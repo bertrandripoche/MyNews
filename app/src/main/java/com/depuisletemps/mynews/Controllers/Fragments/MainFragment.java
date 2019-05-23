@@ -2,6 +2,7 @@ package com.depuisletemps.mynews.Controllers.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,6 +29,7 @@ public class MainFragment extends Fragment {
 
     // FOR DESIGN
     @BindView(R.id.fragment_main_recycler_view) RecyclerView recyclerView;
+    @BindView(R.id.fragment_main_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
 
     //FOR DATA
     private Disposable disposable;
@@ -41,6 +43,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
+        this.configureSwipeRefreshLayout();
         this.configureRecyclerView();
         this.executeHttpRequestWithRetrofit();
         return view;
@@ -65,7 +68,15 @@ public class MainFragment extends Fragment {
     // CONFIGURATION
     // -----------------
 
-    // 3 - Configure RecyclerView, Adapter, LayoutManager & glue it together
+    private void configureSwipeRefreshLayout(){
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                executeHttpRequestWithRetrofit();
+            }
+        });
+    }
+
     private void configureRecyclerView(){
         this.topStories = new ArrayList<>();
         this.adapter = new NytimesAdapter(this.topStories, Glide.with(this));
@@ -107,6 +118,8 @@ public class MainFragment extends Fragment {
     // -----------------
 
     private void updateUI(List<TopStory> topStories){
+        swipeRefreshLayout.setRefreshing(false);
+        this.topStories.clear();
         this.topStories.addAll(topStories);
         adapter.notifyDataSetChanged();
     }
