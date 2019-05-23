@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.RequestManager;
 import com.depuisletemps.mynews.Models.TopStoryResponse;
 import com.depuisletemps.mynews.Models.TopStory;
 import com.depuisletemps.mynews.R;
@@ -16,10 +17,12 @@ public class NytimesAdapter extends RecyclerView.Adapter<NytimesViewHolder> {
 
     // FOR DATA
     private List<TopStory> topStories;
+    private RequestManager glide;
 
     // CONSTRUCTOR
-    public NytimesAdapter(List<TopStory> topStories) {
+    public NytimesAdapter(List<TopStory> topStories, RequestManager glide) {
         this.topStories = topStories;
+        this.glide = glide;
     }
 
     @Override
@@ -33,7 +36,7 @@ public class NytimesAdapter extends RecyclerView.Adapter<NytimesViewHolder> {
 
     @Override
     public void onBindViewHolder(NytimesViewHolder viewHolder, int position) {
-        viewHolder.updateWithTopStories(this.topStories.get(position));
+        viewHolder.updateWithTopStories(this.topStories.get(position), this.glide);
     }
 
     @Override

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.depuisletemps.mynews.Models.TopStoryResponse;
 import com.depuisletemps.mynews.Models.TopStory;
 import com.depuisletemps.mynews.R;
@@ -34,7 +35,7 @@ public class MainFragment extends Fragment {
     private List<TopStory> topStories;
     private NytimesAdapter adapter;
 
-    public MainFragment() { }
+    public MainFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,7 +68,7 @@ public class MainFragment extends Fragment {
     // 3 - Configure RecyclerView, Adapter, LayoutManager & glue it together
     private void configureRecyclerView(){
         this.topStories = new ArrayList<>();
-        this.adapter = new NytimesAdapter(this.topStories);
+        this.adapter = new NytimesAdapter(this.topStories, Glide.with(this));
         this.recyclerView.setAdapter(this.adapter);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
