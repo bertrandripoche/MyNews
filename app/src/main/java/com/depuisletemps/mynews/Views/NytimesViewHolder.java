@@ -39,6 +39,6 @@ public class NytimesViewHolder extends RecyclerView.ViewHolder {
         this.textTitle.setText(topStory.getTitle());
         this.textCategory.setText(category);
         this.textPublishedDate.setText(date);
-        glide.load("https://tse1.mm.bing.net/th?id=OIP.8I_lgCkQmc4l9G-3L0KmmQHaHa&pid=Api").into(imageThumb);
+        glide.load(imageUrl).into(imageThumb);
     }
 }

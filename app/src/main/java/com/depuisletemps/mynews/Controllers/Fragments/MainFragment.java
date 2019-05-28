@@ -1,5 +1,6 @@
 package com.depuisletemps.mynews.Controllers.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,9 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.depuisletemps.mynews.Controllers.Activities.ArticleActivity;
+import com.depuisletemps.mynews.Controllers.Activities.MainActivity;
 import com.depuisletemps.mynews.Models.TopStoryResponse;
 import com.depuisletemps.mynews.Models.TopStory;
 import com.depuisletemps.mynews.R;
+import com.depuisletemps.mynews.Utils.ItemClickSupport;
 import com.depuisletemps.mynews.Utils.NytimesStreams;
 import com.depuisletemps.mynews.Views.NytimesAdapter;
 
@@ -45,6 +49,7 @@ public class MainFragment extends Fragment {
         ButterKnife.bind(this, view);
         this.configureSwipeRefreshLayout();
         this.configureRecyclerView();
+        this.configureOnClickRecyclerView();
         this.executeHttpRequestWithRetrofit();
         return view;
     }
@@ -63,6 +68,17 @@ public class MainFragment extends Fragment {
     public void submit(View view) {
         this.executeHttpRequestWithRetrofit();
     }*/
+
+    private void configureOnClickRecyclerView(){
+        ItemClickSupport.addTo(recyclerView, R.layout.fragment_main_item)
+                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+                    @Override
+                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                        Log.e("TAG", "Position : "+position);
+                        startArticleActivity();
+                    }
+                });
+    }
 
     // -----------------
     // CONFIGURATION
@@ -122,6 +138,12 @@ public class MainFragment extends Fragment {
         this.topStories.clear();
         this.topStories.addAll(topStories);
         adapter.notifyDataSetChanged();
+    }
+
+    private void startArticleActivity() {
+        // We start the Stats activity
+        Intent articleActivityIntent = new Intent(getActivity(), ArticleActivity.class);
+        startActivity(articleActivityIntent);
     }
 
 }
