@@ -35,7 +35,7 @@ public class NytimesViewHolder extends RecyclerView.ViewHolder {
         String date = onlyDay.split("-")[2]+"/"+onlyDay.split("-")[1]+"/"+onlyDay.split("-")[0].substring(2);
 
         String imageUrl;
-        if (!topStory.getMultimedia().isEmpty()) {imageUrl = topStory.getMultimedia().get(0).getUrl();} else {imageUrl = "";}
+        if (!topStory.getMultimedia().isEmpty()) {imageUrl = topStory.getMultimedia().get(0).getUrl();} else {imageUrl = "https://static01.nyt.com/images/2018/08/24/admin/onboarding_10/onboarding_10-articleLarge-v6.jpg?quality=75&auto=webp&disable=upscale"; }
 
         this.textTitle.setText(topStory.getTitle());
         this.textCategory.setText(category);
