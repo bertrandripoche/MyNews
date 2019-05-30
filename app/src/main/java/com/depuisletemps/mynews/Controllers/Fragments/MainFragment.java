@@ -31,17 +31,16 @@ import io.reactivex.observers.DisposableObserver;
 
 public class MainFragment extends Fragment {
 
+    public MainFragment() {}
+
     // FOR DESIGN
     @BindView(R.id.fragment_main_recycler_view) RecyclerView recyclerView;
     @BindView(R.id.fragment_main_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
 
     //FOR DATA
     private Disposable disposable;
-    private TopStoryResponse response;
     private List<TopStory> topStories;
     private NytimesAdapter adapter;
-
-    public MainFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,18 +63,14 @@ public class MainFragment extends Fragment {
     // ACTIONS
     // -----------------
 
-    /*@OnClick(R.id.fragment_main_button)
-    public void submit(View view) {
-        this.executeHttpRequestWithRetrofit();
-    }*/
-
     private void configureOnClickRecyclerView(){
         ItemClickSupport.addTo(recyclerView, R.layout.fragment_main_item)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                         Log.e("TAG", "Position : "+position);
-                        startArticleActivity();
+                        String url = topStories.get(position).getUrl();
+                        startArticleActivity(url);
                     }
                 });
     }
@@ -122,6 +117,7 @@ public class MainFragment extends Fragment {
             public void onComplete() {
                 Log.e("TAG","On Complete !!");
             }
+
         });
     }
 
@@ -140,10 +136,10 @@ public class MainFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-    private void startArticleActivity() {
-        // We start the Stats activity
-        Intent articleActivityIntent = new Intent(getActivity(), ArticleActivity.class);
-        startActivity(articleActivityIntent);
+    private void startArticleActivity(String url) {
+        Intent intent = new Intent(getActivity(), ArticleActivity.class);
+        intent.putExtra("ARTICLE_URL", url);
+        startActivity(intent);
     }
 
 }

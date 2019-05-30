@@ -30,6 +30,7 @@ public class NytimesViewHolder extends RecyclerView.ViewHolder {
 
     public void updateWithTopStories(TopStory topStory, RequestManager glide){
         String category = topStory.getSubsection().isEmpty() ? topStory.getSection():topStory.getSection()+" > "+topStory.getSubsection();
+
         String onlyDay = topStory.getPublishedDate().split("T")[0];
         String date = onlyDay.split("-")[2]+"/"+onlyDay.split("-")[1]+"/"+onlyDay.split("-")[0].substring(2);
 
@@ -41,4 +42,5 @@ public class NytimesViewHolder extends RecyclerView.ViewHolder {
         this.textPublishedDate.setText(date);
         glide.load(imageUrl).into(imageThumb);
     }
+
 }

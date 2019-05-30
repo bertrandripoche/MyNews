@@ -41,7 +41,6 @@ public class ItemClickSupport {
 
         @Override
         public void onChildViewDetachedFromWindow(View view) {
-
         }
     };
 
@@ -84,12 +83,10 @@ public class ItemClickSupport {
     }
 
     public interface OnItemClickListener {
-
         void onItemClicked(RecyclerView recyclerView, int position, View v);
     }
 
     public interface OnItemLongClickListener {
-
         boolean onItemLongClicked(RecyclerView recyclerView, int position, View v);
     }
 }

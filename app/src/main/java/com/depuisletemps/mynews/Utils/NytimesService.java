@@ -9,7 +9,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
 public interface NytimesService {
+
     String endUrl = "svc/topstories/v2/home.json?api-key=SYmDviMp91gFcBBaBnVMFeOArfvt7Y92";
+
     @GET(endUrl)
     Observable<TopStoryResponse> getResults();
 
