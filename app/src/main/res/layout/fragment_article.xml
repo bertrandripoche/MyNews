@@ -4,23 +4,9 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical">
 
-
     <WebView android:id="@+id/activity_article_webview"
         android:layout_height="match_parent"
         android:layout_width="match_parent"/>
 
-
-<!--    <TextView
-        android:id="@+id/activity_article_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:paddingTop="13dip"
-        android:paddingBottom="3dip"
-        android:text="TEST - WORKING"
-        android:gravity="center"
-        /> -->
 
 </LinearLayout>

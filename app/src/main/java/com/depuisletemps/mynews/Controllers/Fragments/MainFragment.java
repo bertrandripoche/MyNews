@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.depuisletemps.mynews.Controllers.Activities.ArticleActivity;
-import com.depuisletemps.mynews.Controllers.Activities.MainActivity;
-import com.depuisletemps.mynews.Models.TopStoryResponse;
+import com.depuisletemps.mynews.Models.Response;
 import com.depuisletemps.mynews.Models.TopStory;
+import com.depuisletemps.mynews.Models.TopStoryResponse;
 import com.depuisletemps.mynews.R;
 import com.depuisletemps.mynews.Utils.ItemClickSupport;
 import com.depuisletemps.mynews.Utils.NytimesStreams;
@@ -31,7 +31,9 @@ import io.reactivex.observers.DisposableObserver;
 
 public class MainFragment extends Fragment {
 
-    public MainFragment() {}
+    public static MainFragment newInstance() {
+        return (new MainFragment());
+    }
 
     // FOR DESIGN
     @BindView(R.id.fragment_main_recycler_view) RecyclerView recyclerView;

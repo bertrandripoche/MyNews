@@ -1,6 +1,8 @@
 package com.depuisletemps.mynews.Utils;
 
+import com.depuisletemps.mynews.Models.Response;
 import com.depuisletemps.mynews.Models.TopStoryResponse;
+
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;

@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.RequestManager;
-import com.depuisletemps.mynews.Models.TopStoryResponse;
 import com.depuisletemps.mynews.Models.TopStory;
 import com.depuisletemps.mynews.R;
 
