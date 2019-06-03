@@ -1,5 +1,6 @@
 package com.depuisletemps.mynews.Utils;
 
+import com.depuisletemps.mynews.Models.MostPopularResponse;
 import com.depuisletemps.mynews.Models.Response;
 import com.depuisletemps.mynews.Models.TopStoryResponse;
 
@@ -11,10 +12,16 @@ import retrofit2.http.GET;
 
 public interface NytimesService {
 
-    String endUrl = "svc/topstories/v2/home.json?api-key=SYmDviMp91gFcBBaBnVMFeOArfvt7Y92";
+    String KEY= "SYmDviMp91gFcBBaBnVMFeOArfvt7Y92";
 
-    @GET(endUrl)
-    Observable<TopStoryResponse> getResults();
+    String endUrlTopStory = "svc/topstories/v2/home.json?api-key="+ KEY;
+    String endUrlMostPopular = "svc/mostpopular/v2/viewed/7.json?api-key="+ KEY;
+
+    @GET(endUrlTopStory)
+    Observable<TopStoryResponse> getTopStoryResults();
+
+    @GET(endUrlMostPopular)
+    Observable<MostPopularResponse> getMostPopularResults();
 
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.nytimes.com/")

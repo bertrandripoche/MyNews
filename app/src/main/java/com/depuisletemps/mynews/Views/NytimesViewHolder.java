@@ -6,17 +6,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.request.RequestOptions;
+import com.depuisletemps.mynews.Models.MostPopular;
 import com.depuisletemps.mynews.Models.TopStory;
-import com.depuisletemps.mynews.Models.TopStoryMultimedium;
 import com.depuisletemps.mynews.R;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class NytimesViewHolder extends RecyclerView.ViewHolder {
+
+    String genericThumb = "https://static01.nyt.com/images/2018/08/24/admin/onboarding_10/onboarding_10-articleLarge-v6.jpg?quality=75&auto=webp&disable=upscale";
+    String imageUrl, date, category, title;
 
     @BindView(R.id.fragment_main_item_title) TextView textTitle;
     @BindView(R.id.fragment_main_item_category) TextView textCategory;
@@ -29,15 +29,31 @@ public class NytimesViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void updateWithTopStories(TopStory topStory, RequestManager glide){
-        String category = topStory.getSubsection().isEmpty() ? topStory.getSection():topStory.getSection()+" > "+topStory.getSubsection();
+        category = topStory.getSubsection().isEmpty() ? topStory.getSection():topStory.getSection()+" > "+topStory.getSubsection();
+        title = topStory.getTitle();
 
         String onlyDay = topStory.getPublishedDate().split("T")[0];
-        String date = onlyDay.split("-")[2]+"/"+onlyDay.split("-")[1]+"/"+onlyDay.split("-")[0].substring(2);
+        date = onlyDay.split("-")[2]+"/"+onlyDay.split("-")[1]+"/"+onlyDay.split("-")[0].substring(2);
 
-        String imageUrl;
-        if (!topStory.getMultimedia().isEmpty()) {imageUrl = topStory.getMultimedia().get(0).getUrl();} else {imageUrl = "https://static01.nyt.com/images/2018/08/24/admin/onboarding_10/onboarding_10-articleLarge-v6.jpg?quality=75&auto=webp&disable=upscale"; }
+        imageUrl = topStory.getMultimedia().isEmpty()? genericThumb : topStory.getMultimedia().get(0).getUrl();
 
-        this.textTitle.setText(topStory.getTitle());
+        displayItem(category,date,title,imageUrl,glide);
+    }
+
+    public void updateWithMostPopulars(MostPopular mostPopular, RequestManager glide){
+        category = !mostPopular.getSection().isEmpty() ? mostPopular.getSection() : "";
+        title = mostPopular.getTitle();
+
+        String nonFormattedDay = mostPopular.getPublishedDate();
+        date = nonFormattedDay.split("-")[2]+"/"+nonFormattedDay.split("-")[1]+"/"+nonFormattedDay.split("-")[0].substring(2);
+
+        imageUrl = mostPopular.getMedia().get(0).getMediaMetadata().isEmpty() ? genericThumb : mostPopular.getMedia().get(0).getMediaMetadata().get(0).getUrl();
+
+        displayItem(category,date,title,imageUrl,glide);
+    }
+
+    private void displayItem(String category, String date, String title, String imageUrl, RequestManager glide) {
+        this.textTitle.setText(title);
         this.textCategory.setText(category);
         this.textPublishedDate.setText(date);
         glide.load(imageUrl).into(imageThumb);

@@ -5,8 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import com.depuisletemps.mynews.Models.Response;
-
 public class TopStoryResponse extends Response {
     @SerializedName("results")
     @Expose
