@@ -1,8 +1,8 @@
 package com.depuisletemps.mynews.Utils;
 
-import com.depuisletemps.mynews.Models.MostPopular;
+import com.depuisletemps.mynews.Controllers.Fragments.SectionFragment;
+import com.depuisletemps.mynews.Models.SectionFirstResponse;
 import com.depuisletemps.mynews.Models.MostPopularResponse;
-import com.depuisletemps.mynews.Models.Response;
 import com.depuisletemps.mynews.Models.TopStoryResponse;
 
 import java.util.concurrent.TimeUnit;
@@ -27,4 +27,13 @@ public class NytimesStreams {
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10, TimeUnit.SECONDS);
     }
+
+    public static Observable<SectionFirstResponse> streamFetchBusiness(){
+        NytimesService nytimesService = NytimesService.retrofit.create(NytimesService.class);
+        return nytimesService.getBusinessResults()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(10, TimeUnit.SECONDS);
+    }
+
 }

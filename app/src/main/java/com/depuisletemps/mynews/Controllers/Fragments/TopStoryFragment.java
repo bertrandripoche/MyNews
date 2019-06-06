@@ -1,13 +1,10 @@
 package com.depuisletemps.mynews.Controllers.Fragments;
 
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.depuisletemps.mynews.Models.TopStory;
@@ -22,10 +19,10 @@ import java.util.List;
 
 import io.reactivex.observers.DisposableObserver;
 
-public class MainFragment extends BaseFragment {
+public class TopStoryFragment extends BaseFragment {
 
-    public static MainFragment newInstance() {
-        return (new MainFragment());
+    public static TopStoryFragment newInstance() {
+        return (new TopStoryFragment());
     }
 
     //FOR DATA

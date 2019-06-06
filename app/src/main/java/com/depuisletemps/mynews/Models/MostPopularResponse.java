@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MostPopularResponse extends Response {
+public class MostPopularResponse {
     @SerializedName("results")
     @Expose
     private List<MostPopular> mostPopulars = null;

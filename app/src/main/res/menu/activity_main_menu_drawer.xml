@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="Categories">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/activity_main_drawer_top_stories"
+                    android:icon="@drawable/baseline_brightness_high_24"
+                    android:title="Top Stories" />
+                <item
+                    android:id="@+id/activity_main_drawer_most_popular"
+                    android:icon="@drawable/baseline_people_24"
+                    android:title="Most Popular" />
+                <item
+                    android:id="@+id/activity_main_drawer_business"
+                    android:icon="@drawable/baseline_business_24"
+                    android:title="Business" />
+                <item
+                    android:id="@+id/activity_main_drawer_books"
+                    android:icon="@drawable/baseline_local_library_24"
+                    android:title="Books" />
+                <item
+                    android:id="@+id/activity_main_drawer_television"
+                    android:icon="@drawable/baseline_tv_24"
+                    android:title="Television" />
+            </group>
+        </menu>
+    </item>
+</menu>

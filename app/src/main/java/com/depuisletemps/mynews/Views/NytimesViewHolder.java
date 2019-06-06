@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.RequestManager;
+import com.depuisletemps.mynews.Models.Section;
 import com.depuisletemps.mynews.Models.MostPopular;
 import com.depuisletemps.mynews.Models.TopStory;
 import com.depuisletemps.mynews.R;
@@ -29,25 +30,44 @@ public class NytimesViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void updateWithTopStories(TopStory topStory, RequestManager glide){
+        String onlyDay = topStory.getPublishedDate().split("T")[0];
+
         category = topStory.getSubsection().isEmpty() ? topStory.getSection():topStory.getSection()+" > "+topStory.getSubsection();
         title = topStory.getTitle();
-
-        String onlyDay = topStory.getPublishedDate().split("T")[0];
         date = onlyDay.split("-")[2]+"/"+onlyDay.split("-")[1]+"/"+onlyDay.split("-")[0].substring(2);
-
         imageUrl = topStory.getMultimedia().isEmpty()? genericThumb : topStory.getMultimedia().get(0).getUrl();
 
         displayItem(category,date,title,imageUrl,glide);
     }
 
     public void updateWithMostPopulars(MostPopular mostPopular, RequestManager glide){
+        String nonFormattedDay = mostPopular.getPublishedDate();
+
+        date = nonFormattedDay.split("-")[2]+"/"+nonFormattedDay.split("-")[1]+"/"+nonFormattedDay.split("-")[0].substring(2);
         category = !mostPopular.getSection().isEmpty() ? mostPopular.getSection() : "";
         title = mostPopular.getTitle();
-
-        String nonFormattedDay = mostPopular.getPublishedDate();
-        date = nonFormattedDay.split("-")[2]+"/"+nonFormattedDay.split("-")[1]+"/"+nonFormattedDay.split("-")[0].substring(2);
-
         imageUrl = mostPopular.getMedia().get(0).getMediaMetadata().isEmpty() ? genericThumb : mostPopular.getMedia().get(0).getMediaMetadata().get(0).getUrl();
+
+        displayItem(category,date,title,imageUrl,glide);
+    }
+
+    public void updateWithBusiness(Section section, RequestManager glide){
+        String nonFormattedDay = section.getPublishedDate().split("T")[0];
+
+        date = nonFormattedDay.split("-")[2]+"/"+nonFormattedDay.split("-")[1]+"/"+nonFormattedDay.split("-")[0].substring(2);
+        category = "Business";
+        title = section.getSectionHeadline().getTitle();
+        imageUrl = section.getMultimedia().isEmpty() ? genericThumb : "https://static01.nyt.com/"+ section.getMultimedia().get(0).getUrl();
+
+        displayItem(category,date,title,imageUrl,glide);
+    }
+
+    public void updateWithSection(Section section, RequestManager glide, String category){
+        String nonFormattedDay = section.getPublishedDate().split("T")[0];
+
+        date = nonFormattedDay.split("-")[2]+"/"+nonFormattedDay.split("-")[1]+"/"+nonFormattedDay.split("-")[0].substring(2);
+        title = section.getSectionHeadline().getTitle();
+        imageUrl = section.getMultimedia().get(0).getUrl().isEmpty() ? genericThumb : "https://static01.nyt.com/"+ section.getMultimedia().get(0).getUrl();
 
         displayItem(category,date,title,imageUrl,glide);
     }

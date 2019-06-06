@@ -3,7 +3,16 @@
 
     <string name="button_text">Obtenir mes news</string>
     <string name="article_thumb">Image</string>
-    <string name="initial_text">Mes news à venir...</string>
-    <string name="nyt_api_key">SYmDviMp91gFcBBaBnVMFeOArfvt7Y92</string>
+
+    <!-- Categories -->
+    <string name="top_stories">Top Stories</string>
+    <string name="most_popular">Most Popular</string>
+    <string name="business">Business</string>
+    <string name="books">Books</string>
+    <string name="television">Television</string>
+
+    <!-- Navigation drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 </resources>

@@ -4,9 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.depuisletemps.mynews.Controllers.Fragments.BusinessFragment;
-import com.depuisletemps.mynews.Controllers.Fragments.MainFragment;
+import com.depuisletemps.mynews.Controllers.Fragments.SectionFragment;
+import com.depuisletemps.mynews.Controllers.Fragments.TopStoryFragment;
 import com.depuisletemps.mynews.Controllers.Fragments.MostPopularFragment;
+import com.depuisletemps.mynews.R;
 
 public class PageAdapter extends FragmentPagerAdapter {
 
@@ -16,18 +17,22 @@ public class PageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return(3); // Number of page to show
+        return(5);
     }
 
     @Override
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return MainFragment.newInstance();
+                return TopStoryFragment.newInstance();
             case 1:
                 return MostPopularFragment.newInstance();
             case 2:
-                return BusinessFragment.newInstance();
+                return SectionFragment.newInstance("business");
+            case 3:
+                return SectionFragment.newInstance("books");
+            case 4:
+                return SectionFragment.newInstance("television");
             default:
                 return null;
         }
@@ -42,6 +47,11 @@ public class PageAdapter extends FragmentPagerAdapter {
                 return "Most Popular";
             case 2:
                 return "Business";
+            case 3:
+                return "Books";
+            case 4:
+                return "Television";
+
             default:
                 return null;
         }
