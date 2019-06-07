@@ -10,6 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface NytimesService {
 
@@ -17,8 +18,7 @@ public interface NytimesService {
 
     String endUrlTopStory = "svc/topstories/v2/home.json?api-key="+ KEY;
     String endUrlMostPopular = "svc/mostpopular/v2/viewed/7.json?api-key="+ KEY;
-    String endUrlBusiness = "svc/search/v2/articlesearch.json?fq=business&api-key="+ KEY;
-    String endUrlBooks = "svc/search/v2/articlesearch.json?fq=books&api-key="+ KEY;
+    String endUrlSection = "svc/search/v2/articlesearch.json?api-key="+ KEY + "&";
 
     @GET(endUrlTopStory)
     Observable<TopStoryResponse> getTopStoryResults();
@@ -26,11 +26,8 @@ public interface NytimesService {
     @GET(endUrlMostPopular)
     Observable<MostPopularResponse> getMostPopularResults();
 
-    @GET(endUrlBusiness)
-    Observable<SectionFirstResponse> getBusinessResults();
-
-    @GET(endUrlBooks)
-    Observable<SectionFirstResponse> getBooksResults();
+    @GET(endUrlSection)
+    Observable<SectionFirstResponse> getSectionResults(@Query("fq") String sectionName);
 
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.nytimes.com/")

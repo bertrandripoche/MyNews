@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.depuisletemps.mynews.Controllers.Fragments.SectionFragment;
 import com.depuisletemps.mynews.Controllers.Fragments.TopStoryFragment;
 import com.depuisletemps.mynews.Controllers.Fragments.MostPopularFragment;
-import com.depuisletemps.mynews.R;
 
 public class PageAdapter extends FragmentPagerAdapter {
 
@@ -17,7 +16,7 @@ public class PageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return(5);
+        return(8);
     }
 
     @Override
@@ -28,11 +27,17 @@ public class PageAdapter extends FragmentPagerAdapter {
             case 1:
                 return MostPopularFragment.newInstance();
             case 2:
-                return SectionFragment.newInstance("business");
+                return SectionFragment.newInstance("Business");
             case 3:
-                return SectionFragment.newInstance("books");
+                return SectionFragment.newInstance("Books");
             case 4:
-                return SectionFragment.newInstance("television");
+                return SectionFragment.newInstance("Science");
+            case 5:
+                return SectionFragment.newInstance("Sports");
+            case 6:
+                return SectionFragment.newInstance("Television");
+            case 7:
+                return SectionFragment.newInstance("World");
             default:
                 return null;
         }
@@ -50,7 +55,13 @@ public class PageAdapter extends FragmentPagerAdapter {
             case 3:
                 return "Books";
             case 4:
+                return "Science";
+            case 5:
+                return "Sports";
+            case 6:
                 return "Television";
+            case 7:
+                return "World";
 
             default:
                 return null;

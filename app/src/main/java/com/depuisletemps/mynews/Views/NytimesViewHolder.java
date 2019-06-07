@@ -51,11 +51,10 @@ public class NytimesViewHolder extends RecyclerView.ViewHolder {
         displayItem(category,date,title,imageUrl,glide);
     }
 
-    public void updateWithBusiness(Section section, RequestManager glide){
+    public void updateWithBusiness(Section section, RequestManager glide, String category){
         String nonFormattedDay = section.getPublishedDate().split("T")[0];
 
         date = nonFormattedDay.split("-")[2]+"/"+nonFormattedDay.split("-")[1]+"/"+nonFormattedDay.split("-")[0].substring(2);
-        category = "Business";
         title = section.getSectionHeadline().getTitle();
         imageUrl = section.getMultimedia().isEmpty() ? genericThumb : "https://static01.nyt.com/"+ section.getMultimedia().get(0).getUrl();
 

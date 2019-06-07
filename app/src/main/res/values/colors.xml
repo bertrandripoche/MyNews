@@ -10,6 +10,7 @@
     <color name="light_blue">#ffb3ebf2</color>
     <color name="light_gray">#ffcccccc</color>
     <color name="red">#ffff0000</color>
+    <color name="orange">#fff58604</color>
     <color name="white">#ffffffff</color>
     <color name="yellow">#fff8e71c</color>
 </resources>

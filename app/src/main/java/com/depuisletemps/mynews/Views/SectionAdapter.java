@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.RequestManager;
-import com.depuisletemps.mynews.Controllers.Fragments.SectionFragment;
 import com.depuisletemps.mynews.Models.Section;
 import com.depuisletemps.mynews.R;
 
@@ -18,11 +17,13 @@ public class SectionAdapter extends RecyclerView.Adapter<NytimesViewHolder>{
     // FOR DATA
     private List<Section> sections;
     private RequestManager glide;
+    private String sectionName;
 
     // CONSTRUCTOR
-    public SectionAdapter(List<Section> sections, RequestManager glide) {
+    public SectionAdapter(List<Section> sections, RequestManager glide, String sectionName) {
         this.sections = sections;
         this.glide = glide;
+        this.sectionName = sectionName;
     }
 
     @Override
@@ -36,7 +37,7 @@ public class SectionAdapter extends RecyclerView.Adapter<NytimesViewHolder>{
 
     @Override
     public void onBindViewHolder(NytimesViewHolder viewHolder, int position) {
-        viewHolder.updateWithBusiness(this.sections.get(position), this.glide);
+        viewHolder.updateWithSection(this.sections.get(position), this.glide, this.sectionName);
     }
 
     @Override

@@ -22,20 +22,27 @@ import io.reactivex.observers.DisposableObserver;
 
 public class SectionFragment extends BaseFragment {
 
+    //FOR DATA
+    private List<Section> sections;
+    private SectionAdapter adapter;
+    private String sectionName;
+
     public static SectionFragment newInstance(String sectionName) {
         SectionFragment myFragment = new SectionFragment();
 
         Bundle args = new Bundle();
-        args.putString("section", sectionName);
+        args.putString("sectionName", sectionName);
         myFragment.setArguments(args);
 
         return myFragment;
         //return (new SectionFragment());
     }
 
-        //FOR DATA
-        private List<Section> sections;
-        private SectionAdapter adapter;
+    private void readBundle(Bundle bundle) {
+        if (bundle != null) {
+            sectionName = bundle.getString("sectionName");
+        }
+    }
 
     void configureOnClickRecyclerView () {
             ItemClickSupport.addTo(recyclerView, R.layout.fragment_main_item)
@@ -58,14 +65,15 @@ public class SectionFragment extends BaseFragment {
     }
 
     void configureRecyclerView () {
+        readBundle(getArguments());
         this.sections = new ArrayList<>();
-        this.adapter = new SectionAdapter(this.sections, Glide.with(this));
+        this.adapter = new SectionAdapter(this.sections, Glide.with(this), sectionName);
         this.recyclerView.setAdapter(this.adapter);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     void executeHttpRequestWithRetrofit () {
-        this.disposable = NytimesStreams.streamFetchBusiness().subscribeWith(new DisposableObserver<SectionFirstResponse>() {
+        this.disposable = NytimesStreams.streamFetchSection(sectionName).subscribeWith(new DisposableObserver<SectionFirstResponse>() {
             @Override
             public void onNext(SectionFirstResponse results) {
                 Log.e("TAG", "On Next");

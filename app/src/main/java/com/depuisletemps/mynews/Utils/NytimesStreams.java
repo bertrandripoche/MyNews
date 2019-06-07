@@ -28,9 +28,9 @@ public class NytimesStreams {
                 .timeout(10, TimeUnit.SECONDS);
     }
 
-    public static Observable<SectionFirstResponse> streamFetchBusiness(){
+    public static Observable<SectionFirstResponse> streamFetchSection(String sectionName){
         NytimesService nytimesService = NytimesService.retrofit.create(NytimesService.class);
-        return nytimesService.getBusinessResults()
+        return nytimesService.getSectionResults(sectionName.toLowerCase())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10, TimeUnit.SECONDS);

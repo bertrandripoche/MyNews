@@ -9,7 +9,7 @@
     </style>
 
     <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
-        <item name="android:textSize">12dip</item>
+        <item name="android:textSize">14dip</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
@@ -23,7 +23,7 @@
     </style>
 
     <style name="AppTheme.NavigationView">
-        <item name="android:textColorSecondary">#999999</item>
+        <item name="android:textColorSecondary">@color/orange</item>
     </style>
 
 </resources>

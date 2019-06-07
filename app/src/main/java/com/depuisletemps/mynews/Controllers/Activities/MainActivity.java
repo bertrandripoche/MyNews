@@ -13,14 +13,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.depuisletemps.mynews.Controllers.Fragments.TopStoryFragment;
 import com.depuisletemps.mynews.R;
 import com.depuisletemps.mynews.Views.PageAdapter;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ViewPager pager;
-    private TopStoryFragment topStoryFragment;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
@@ -31,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         this.configureToolbar();
-        this.configureViewPagerAndTabs(0);
+        this.configureViewPagerAndTabs();
         this.configureDrawerLayout();
         this.configureNavigationView();
     }
@@ -87,8 +85,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.activity_main_drawer_books:
                 pager.setCurrentItem(3);
                 break;
-            case R.id.activity_main_drawer_television:
+            case R.id.activity_main_drawer_science:
                 pager.setCurrentItem(4);
+                break;
+            case R.id.activity_main_drawer_sports:
+                pager.setCurrentItem(5);
+                break;
+            case R.id.activity_main_drawer_television:
+                pager.setCurrentItem(6);
+                break;
+            case R.id.activity_main_drawer_world:
+                pager.setCurrentItem(7);
                 break;
             default:
                 break;
@@ -102,14 +109,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
     }
 
-    private void configureViewPagerAndTabs(int position){
+    private void configureViewPagerAndTabs(){
         pager = (ViewPager)findViewById(R.id.activity_main_viewpager);
         pager.setAdapter(new PageAdapter(getSupportFragmentManager()));
 
         TabLayout tabs= (TabLayout)findViewById(R.id.activity_main_tabs);
         tabs.setupWithViewPager(pager);
-
-        pager.setCurrentItem(position);
     }
 
     private void configureDrawerLayout(){

@@ -9,7 +9,7 @@
                 <item
                     android:id="@+id/activity_main_drawer_top_stories"
                     android:icon="@drawable/baseline_brightness_high_24"
-                    android:title="Top Stories" />
+                    android:title="Top Stories"/>
                 <item
                     android:id="@+id/activity_main_drawer_most_popular"
                     android:icon="@drawable/baseline_people_24"
@@ -20,13 +20,26 @@
                     android:title="Business" />
                 <item
                     android:id="@+id/activity_main_drawer_books"
-                    android:icon="@drawable/baseline_local_library_24"
+                    android:icon="@drawable/baseline_local_library"
                     android:title="Books" />
+                <item
+                    android:id="@+id/activity_main_drawer_science"
+                    android:icon="@drawable/science"
+                    android:title="Science" />
+                <item
+                    android:id="@+id/activity_main_drawer_sports"
+                    android:icon="@drawable/baseline_directions_run_24"
+                    android:title="Sports" />
                 <item
                     android:id="@+id/activity_main_drawer_television"
                     android:icon="@drawable/baseline_tv_24"
                     android:title="Television" />
+                <item
+                    android:id="@+id/activity_main_drawer_world"
+                    android:icon="@drawable/world"
+                    android:title="World" />
             </group>
         </menu>
     </item>
+
 </menu>
