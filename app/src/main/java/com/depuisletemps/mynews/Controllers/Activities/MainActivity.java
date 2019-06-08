@@ -1,5 +1,6 @@
 package com.depuisletemps.mynews.Controllers.Activities;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Ecran de notifications", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.menu_activity_main_help:
-                Toast.makeText(this, "Ecran d'aide", Toast.LENGTH_LONG).show();
+                launchDetailActivity();
                 return true;
             case R.id.menu_activity_main_about:
                 Toast.makeText(this, "Ecran autour de l'appli", Toast.LENGTH_LONG).show();
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void configureToolbar(){
-        this.toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
@@ -129,4 +130,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    private void launchDetailActivity(){
+        Intent myIntent = new Intent(MainActivity.this, HelpActivity.class);
+        this.startActivity(myIntent);
+    }
 }

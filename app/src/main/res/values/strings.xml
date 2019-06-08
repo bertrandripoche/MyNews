@@ -15,4 +15,10 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="help">Please navigate across the categories to choose the list of articles you want to check.
+    Click on one entry to be redirect towards the article on the NY Times webpage.
+    You can also do some searches from the Search screen (touch the Search icon).
+    Finally, you can set up notification from the Notifications screen.</string>
+
+
 </resources>
