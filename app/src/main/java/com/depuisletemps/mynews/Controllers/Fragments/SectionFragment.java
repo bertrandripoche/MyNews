@@ -35,7 +35,6 @@ public class SectionFragment extends BaseFragment {
         myFragment.setArguments(args);
 
         return myFragment;
-        //return (new SectionFragment());
     }
 
     private void readBundle(Bundle bundle) {

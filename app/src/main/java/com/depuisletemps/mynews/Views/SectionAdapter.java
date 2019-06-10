@@ -26,6 +26,11 @@ public class SectionAdapter extends RecyclerView.Adapter<NytimesViewHolder>{
         this.sectionName = sectionName;
     }
 
+    public SectionAdapter(List<Section> sections, RequestManager glide) {
+        this.sections = sections;
+        this.glide = glide;
+    }
+
     @Override
     public NytimesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();

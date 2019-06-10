@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_margin="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -14,11 +13,11 @@
         android:layout_weight="1">
 
         <android.support.v7.widget.AppCompatCheckBox
-            android:id="@+id/activity_form_checkbox_business"
+            android:id="@+id/activity_form_checkbox_books"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/WhiteCheck"
-            android:text="@string/business"/>
+            android:text="@string/books"/>
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/activity_form_checkbox_science"
@@ -42,11 +41,11 @@
         android:layout_weight="1">
 
         <android.support.v7.widget.AppCompatCheckBox
-            android:id="@+id/activity_form_checkbox_books"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:theme="@style/WhiteCheck"
-            android:text="@string/books"/>
+        android:id="@+id/activity_form_checkbox_business"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/WhiteCheck"
+        android:text="@string/business"/>
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/activity_form_checkbox_sports"

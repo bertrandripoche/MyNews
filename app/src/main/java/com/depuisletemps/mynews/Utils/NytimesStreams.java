@@ -35,5 +35,4 @@ public class NytimesStreams {
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10, TimeUnit.SECONDS);
     }
-
 }

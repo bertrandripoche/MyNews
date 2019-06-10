@@ -9,49 +9,70 @@
     <include
         layout="@layout/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        />
+        android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/activity_info_input"
+        android:id="@+id/activity_form_query_term"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_margin="10dp"
         android:paddingLeft="15dp"
         android:hint="@string/search_query" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/activity_form_begin"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Begin date"
-            style="@android:style/Widget.DeviceDefault.Light.Spinner"/>
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/activity_form_end"
+            android:orientation="vertical">
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:text="Begin Date"/>
+            <TextView
+                android:id="@+id/activity_form_begin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@android:style/Widget.DeviceDefault.Light.Spinner"/>
+            <View style="@style/Divider"
+                android:layout_marginRight="10dp"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-           android:text="End date"
-            style="@android:style/Widget.DeviceDefault.Light.Spinner"/>
-
+            android:orientation="vertical">
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:text="End Date"/>
+            <TextView
+                android:id="@+id/activity_form_end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@android:style/Widget.DeviceDefault.Light.Spinner"/>
+            <View style="@style/Divider"
+                android:layout_marginRight="10dp"/>
+        </LinearLayout>
     </LinearLayout>
 
     <include
         layout="@layout/form_categories"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <android.support.v7.widget.AppCompatButton
+        android:id="@+id/activity_form_search_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/search"
