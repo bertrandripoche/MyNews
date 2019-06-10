@@ -54,16 +54,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_activity_main_search:
-                Toast.makeText(this, "Ecran de recherche", Toast.LENGTH_LONG).show();
+                launchActivity("Search");
                 return true;
             case R.id.menu_activity_main_notifications:
-                Toast.makeText(this, "Ecran de notifications", Toast.LENGTH_LONG).show();
+                launchActivity("Notifications");
                 return true;
             case R.id.menu_activity_main_help:
-                launchDetailActivity();
+                launchActivity("Help");
                 return true;
             case R.id.menu_activity_main_about:
-                Toast.makeText(this, "Ecran autour de l'appli", Toast.LENGTH_LONG).show();
+                launchActivity("About");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -98,6 +98,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.activity_main_drawer_world:
                 pager.setCurrentItem(7);
                 break;
+            case R.id.activity_main_drawer_search:
+                launchActivity("Search");
+                break;
+            case R.id.activity_main_drawer_notifications:
+                launchActivity("Notifications");
+                break;
+            case R.id.activity_main_drawer_help:
+                launchActivity("Help");
+                break;
+            case R.id.activity_main_drawer_about:
+                launchActivity("About");
+                break;
             default:
                 break;
         }
@@ -130,8 +142,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    private void launchDetailActivity(){
-        Intent myIntent = new Intent(MainActivity.this, HelpActivity.class);
+    private void launchActivity(String activity) {
+        Class myClass;
+        switch(activity) {
+            case "Help":
+                myClass = HelpActivity.class;
+                break;
+            case "About":
+                myClass = AboutActivity.class;
+                break;
+            case "Notifications":
+                myClass = NotificationsActivity.class;
+                break;
+            case "Search":
+                myClass = SearchArticlesActivity.class;
+                break;
+            default:
+                myClass = MainActivity.class;
+        }
+        Intent myIntent = new Intent(MainActivity.this,myClass);
         this.startActivity(myIntent);
     }
+
 }

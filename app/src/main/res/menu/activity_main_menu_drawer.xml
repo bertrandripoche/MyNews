@@ -9,35 +9,58 @@
                 <item
                     android:id="@+id/activity_main_drawer_top_stories"
                     android:icon="@drawable/baseline_brightness_high_24"
-                    android:title="Top Stories"/>
+                    android:title="@string/top_stories"/>
                 <item
                     android:id="@+id/activity_main_drawer_most_popular"
                     android:icon="@drawable/baseline_people_24"
-                    android:title="Most Popular" />
+                    android:title="@string/most_popular" />
                 <item
                     android:id="@+id/activity_main_drawer_business"
                     android:icon="@drawable/baseline_business_24"
-                    android:title="Business" />
+                    android:title="@string/business" />
                 <item
                     android:id="@+id/activity_main_drawer_books"
                     android:icon="@drawable/baseline_local_library"
-                    android:title="Books" />
+                    android:title="@string/books" />
                 <item
                     android:id="@+id/activity_main_drawer_science"
                     android:icon="@drawable/science"
-                    android:title="Science" />
+                    android:title="@string/science" />
                 <item
                     android:id="@+id/activity_main_drawer_sports"
                     android:icon="@drawable/baseline_directions_run_24"
-                    android:title="Sports" />
+                    android:title="@string/sports" />
                 <item
                     android:id="@+id/activity_main_drawer_television"
                     android:icon="@drawable/baseline_tv_24"
-                    android:title="Television" />
+                    android:title="@string/television" />
                 <item
                     android:id="@+id/activity_main_drawer_world"
                     android:icon="@drawable/world"
-                    android:title="World" />
+                    android:title="@string/world" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Miscellaneous">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/activity_main_drawer_search"
+                    android:icon="@drawable/baseline_search_24"
+                    android:title="@string/search"/>
+                <item
+                    android:id="@+id/activity_main_drawer_notifications"
+                    android:icon="@drawable/baseline_notification_important_24"
+                    android:title="@string/notifications" />
+                <item
+                    android:id="@+id/activity_main_drawer_help"
+                    android:icon="@drawable/baseline_help_24"
+                    android:title="@string/help" />
+                <item
+                    android:id="@+id/activity_main_drawer_about"
+                    android:icon="@drawable/baseline_info_24"
+                    android:title="@string/world" />
             </group>
         </menu>
     </item>

@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">MyNews</string>
 
-    <string name="button_text">Obtenir mes news</string>
     <string name="article_thumb">Image</string>
 
     <!-- Categories -->
@@ -9,16 +8,32 @@
     <string name="most_popular">Most Popular</string>
     <string name="business">Business</string>
     <string name="books">Books</string>
+    <string name="science">Science</string>
+    <string name="sports">Sports</string>
     <string name="television">Television</string>
+    <string name="world">World</string>
+
+    <string name="search">Search</string>
+    <string name="notifications">Notifications</string>
+    <string name="help">Help</string>
+    <string name="about">About</string>
 
     <!-- Navigation drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="help">Please navigate across the categories to choose the list of articles you want to check.
-    Click on one entry to be redirect towards the article on the NY Times webpage.
-    You can also do some searches from the Search screen (touch the Search icon).
+    <string name="help_speech">Please navigate across the categories to choose the list of articles you want to check.\n
+    Click on one entry to be redirect towards the article on the NY Times webpage.\n
+    You can also do some searches from the Search screen (touch the Search icon).\n
     Finally, you can set up notification from the Notifications screen.</string>
 
+    <string name="about_speech">Version : v1.0\n
+        Author : Bertrand Ripoche\n
+        Release date : June, the 8th, 2019\n
+    </string>
+
+    <string name="search_query">Search query item...</string>
+
+    <string name="notification_question">Enable notification (once per day)</string>
 
 </resources>

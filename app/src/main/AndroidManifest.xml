@@ -18,18 +18,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Controllers.Activities.HelpActivity"
-            android:label="Detail"
-            android:parentActivityName=".Controllers.Activities.MainActivity">
-                  <meta-data
+            <activity android:name=".Controllers.Activities.NotificationsActivity"
+                android:label="Notifications"
+                android:parentActivityName=".Controllers.Activities.MainActivity">
+                <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".Controllers.Activities.MainActivity" />
-        </activity>
-
-        <activity android:name=".Controllers.Activities.ArticleActivity">
-        </activity>
-
-</application>
+            </activity>
+            <activity android:name=".Controllers.Activities.SearchArticlesActivity"
+                android:label="Search Articles"
+                android:parentActivityName=".Controllers.Activities.MainActivity">
+                <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".Controllers.Activities.MainActivity" />
+            </activity>
+            <activity
+                android:name=".Controllers.Activities.AboutActivity"
+                android:label="About"
+                android:parentActivityName=".Controllers.Activities.MainActivity">
+                <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".Controllers.Activities.MainActivity" />
+            </activity>
+            <activity
+                android:name=".Controllers.Activities.HelpActivity"
+                android:label="Help"
+                android:parentActivityName=".Controllers.Activities.MainActivity">
+                <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".Controllers.Activities.MainActivity" />
+            </activity>
+        <activity android:name=".Controllers.Activities.ArticleActivity" />
+    </application>
 
 </manifest>

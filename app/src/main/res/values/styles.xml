@@ -6,26 +6,61 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:spinnerStyle">@style/AppTheme.Form.Spinner</item>
+        <item name="android:spinnerItemStyle">@style/AppTheme.Form.Spinner.Item</item>
+
     </style>
 
+    <!-- Spinner Styles -->
+    <style name="AppTheme.Form.Spinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+    </style>
+    <style name="AppTheme.Form.Spinner.Item" parent="Widget.AppCompat.EditText">
+        <item name="android:clickable">false</item>
+    </style>
+
+    <!-- Tab layout-->
     <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
         <item name="android:textSize">14dip</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
+    <!-- Toolbar -->
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/colorPrimary</item>
         <item name="android:itemBackground">@color/orange</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <!-- Toolbar title-->
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">20sp</item>
     </style>
 
+    <!-- Navigation drawer style-->
     <style name="AppTheme.NavigationView">
         <item name="android:textColorSecondary">@color/orange</item>
     </style>
 
+    <!-- Checkbox style -->
+    <style name="WhiteCheck">
+        <item name="colorAccent">@color/white</item>
+        <item name="buttonTint">@color/white</item>
+    </style>
+
+    <!-- Divider -->
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/gray</item>
+    </style>
+
+    <!-- Switch -->
+    <style name="Switch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorSwitchThumbNormal">#ff666666</item>
+    </style>
 </resources>
