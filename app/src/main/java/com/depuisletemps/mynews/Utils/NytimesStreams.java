@@ -30,7 +30,9 @@ public class NytimesStreams {
 
     public static Observable<SectionFirstResponse> streamFetchSection(String sectionName){
         NytimesService nytimesService = NytimesService.retrofit.create(NytimesService.class);
-        return nytimesService.getSectionResults(sectionName.toLowerCase())
+        String querySectionName = "section_name:(\""+sectionName+"\")";
+        //return nytimesService.getSectionResults(sectionName.toLowerCase())
+        return nytimesService.getSectionResults(querySectionName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10, TimeUnit.SECONDS);

@@ -14,6 +14,7 @@ import retrofit2.http.Query;
 
 public interface NytimesService {
 
+    @SuppressWarnings("SpellCheckingInspection")
     String KEY= "SYmDviMp91gFcBBaBnVMFeOArfvt7Y92";
 
     String endUrlTopStory = "svc/topstories/v2/home.json?api-key="+ KEY;

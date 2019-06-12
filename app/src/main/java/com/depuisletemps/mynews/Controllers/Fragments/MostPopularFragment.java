@@ -45,15 +45,6 @@ public class MostPopularFragment extends BaseFragment {
                 });
     }
 
-    void configureSwipeRefreshLayout(){
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                executeHttpRequestWithRetrofit();
-            }
-        });
-    }
-
     void configureRecyclerView(){
         this.mostPopulars = new ArrayList<>();
         this.adapter = new MostPopularAdapter(this.mostPopulars, Glide.with(this));

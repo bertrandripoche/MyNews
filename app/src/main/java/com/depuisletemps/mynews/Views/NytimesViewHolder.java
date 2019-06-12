@@ -56,8 +56,8 @@ public class NytimesViewHolder extends RecyclerView.ViewHolder {
 
         date = nonFormattedDay.split("-")[2]+"/"+nonFormattedDay.split("-")[1]+"/"+nonFormattedDay.split("-")[0].substring(2);
         title = section.getSectionHeadline().getTitle();
-        imageUrl = genericThumb;
         imageUrl = section.getMultimedia().isEmpty() ? genericThumb : "https://static01.nyt.com/"+ section.getMultimedia().get(0).getUrl();
+
         displayItem(category,date,title,imageUrl,glide);
     }
 

@@ -54,15 +54,6 @@ public class SectionFragment extends BaseFragment {
                     });
         }
 
-    void configureSwipeRefreshLayout () {
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                executeHttpRequestWithRetrofit();
-            }
-        });
-    }
-
     void configureRecyclerView () {
         readBundle(getArguments());
         this.sections = new ArrayList<>();

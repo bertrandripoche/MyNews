@@ -1,19 +1,19 @@
 <resources>
     <string name="app_name">MyNews</string>
 
-    <string name="article_thumb">Image</string>
-
     <!-- Categories -->
     <string name="top_stories">Top Stories</string>
     <string name="most_popular">Most Popular</string>
-    <string name="business">Business</string>
+    <string name="arts">Arts</string>
     <string name="books">Books</string>
     <string name="science">Science</string>
     <string name="sports">Sports</string>
-    <string name="television">Television</string>
+    <string name="technology">Technology</string>
     <string name="world">World</string>
 
+    <string name="categories">Categories</string>
     <string name="search">Search</string>
+    <string name="miscellaneous">Miscellaneous</string>
     <string name="notifications">Notifications</string>
     <string name="help">Help</string>
     <string name="about">About</string>
@@ -22,21 +22,26 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="help_speech">Please navigate across the categories to choose the list of articles you want to check.\n
-    Click on one entry to be redirect towards the article on the NY Times webpage.\n
-    You can also do some searches from the Search screen (touch the Search icon).\n
+    <!-- Help screen -->
+    <string name="help_speech">Please navigate across the categories to choose the list of articles you want to check.\n\n
+    Click on one entry to be redirect towards the article on the NY Times webpage.\n\n
+    You can also do some searches from the Search screen (touch the Search icon).\n\n
     Finally, you can set up notification from the Notifications screen.</string>
 
+    <!-- About screen -->
     <string name="about_speech">Version : v1.0\n
         Author : Bertrand Ripoche\n
         Release date : June, the 8th, 2019\n
     </string>
 
+    <!-- Article lists -->
+    <string name="article_thumb">Image</string>
+
+    <!-- Forms -->
+    <string name="begin_date">Begin Date</string>
+    <string name="end_date">End Date</string>
     <string name="search_query">Search query term...</string>
-
     <string name="notification_question">Enable notification (once per day)</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="terms_warning">You need to enter at least\none query term to search</string>
 
 </resources>

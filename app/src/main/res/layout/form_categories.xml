@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/WhiteCheck"
-            android:text="@string/books"/>
+            android:text="@string/arts"/>
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/activity_form_checkbox_science"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/WhiteCheck"
-            android:text="@string/television"/>
+            android:text="@string/technology"/>
     </LinearLayout>
 
     <LinearLayout
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:theme="@style/WhiteCheck"
-        android:text="@string/business"/>
+        android:text="@string/books"/>
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/activity_form_checkbox_sports"

@@ -18,6 +18,7 @@
         android:inputType="text"
         android:layout_margin="10dp"
         android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:hint="@string/search_query" />
 
     <LinearLayout
@@ -34,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray"
-                android:text="Begin Date"/>
+                android:text="@string/begin_date"/>
             <TextView
                 android:id="@+id/activity_form_begin"
                 android:layout_width="match_parent"
@@ -53,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray"
-                android:text="End Date"/>
+                android:text="@string/end_date"/>
             <TextView
                 android:id="@+id/activity_form_end"
                 android:layout_width="match_parent"

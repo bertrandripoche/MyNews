@@ -31,7 +31,7 @@
         android:gravity="end"
         android:textSize="12sp"
         android:textColor="@color/black"
-        android:paddingRight="5dip"
+        android:paddingEnd="5dip"
         android:paddingTop="13dip"
         android:layout_alignParentEnd="true"
         />

@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 
 import com.depuisletemps.mynews.R;
 
+import java.util.Objects;
+
 public class AboutActivity extends AppCompatActivity {
 
     @Override
@@ -17,9 +19,9 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     private void configureToolbar(){
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(ab).setDisplayHomeAsUpEnabled(true);
     }
 }

@@ -41,15 +41,6 @@ public class TopStoryFragment extends BaseFragment {
                 });
     }
 
-    void configureSwipeRefreshLayout(){
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                executeHttpRequestWithRetrofit();
-            }
-        });
-    }
-
     void configureRecyclerView(){
         this.topStories = new ArrayList<>();
         this.adapter = new NytimesAdapter(this.topStories, Glide.with(this));

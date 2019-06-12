@@ -26,7 +26,6 @@ public class SearchResultFragment extends BaseFragment {
         //FOR DATA
         private List<Section> sections;
         private SectionAdapter adapter;
-        private Bundle bundle;
 
         public static SearchResultFragment newInstance() {return (new SearchResultFragment());
         }
@@ -40,15 +39,6 @@ public class SearchResultFragment extends BaseFragment {
                             startArticleActivity(url);
                         }
                     });
-        }
-
-        void configureSwipeRefreshLayout () {
-            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    executeHttpRequestWithRetrofit();
-                }
-            });
         }
 
         void configureRecyclerView () {

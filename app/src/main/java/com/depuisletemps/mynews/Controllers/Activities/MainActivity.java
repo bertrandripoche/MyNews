@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.activity_main_drawer_most_popular:
                 pager.setCurrentItem(1);
                 break;
-            case R.id.activity_main_drawer_business:
+            case R.id.activity_main_drawer_arts:
                 pager.setCurrentItem(2);
                 break;
             case R.id.activity_main_drawer_books:
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.activity_main_drawer_sports:
                 pager.setCurrentItem(5);
                 break;
-            case R.id.activity_main_drawer_television:
+            case R.id.activity_main_drawer_technology:
                 pager.setCurrentItem(6);
                 break;
             case R.id.activity_main_drawer_world:
@@ -117,27 +117,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void configureToolbar(){
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
     private void configureViewPagerAndTabs(){
-        pager = (ViewPager)findViewById(R.id.activity_main_viewpager);
+        pager = findViewById(R.id.activity_main_viewpager);
         pager.setAdapter(new PageAdapter(getSupportFragmentManager()));
 
-        TabLayout tabs= (TabLayout)findViewById(R.id.activity_main_tabs);
+        TabLayout tabs= findViewById(R.id.activity_main_tabs);
         tabs.setupWithViewPager(pager);
     }
 
     private void configureDrawerLayout(){
-        this.drawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer_layout);
+        this.drawerLayout = findViewById(R.id.activity_main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
     }
 
     private void configureNavigationView(){
-        this.navigationView = (NavigationView) findViewById(R.id.activity_main_nav_view);
+        this.navigationView = findViewById(R.id.activity_main_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 

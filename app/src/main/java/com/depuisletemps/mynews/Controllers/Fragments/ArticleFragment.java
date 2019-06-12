@@ -21,7 +21,7 @@ public class ArticleFragment extends Fragment {
         String url = getActivity().getIntent().getExtras().getString("ARTICLE_URL");
 
         View view = inflater.inflate(R.layout.fragment_article, container, false);
-        webView = (WebView) view.findViewById(R.id.activity_article_webview);
+        webView = view.findViewById(R.id.activity_article_webview);
         webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
