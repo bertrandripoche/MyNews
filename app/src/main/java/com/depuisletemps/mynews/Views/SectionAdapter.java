@@ -42,7 +42,7 @@ public class SectionAdapter extends RecyclerView.Adapter<NytimesViewHolder>{
 
     @Override
     public void onBindViewHolder(NytimesViewHolder viewHolder, int position) {
-        viewHolder.updateWithSection(this.sections.get(position), this.glide, this.sectionName);
+        viewHolder.updateWithSection(this.sections.get(position), this.glide);
     }
 
     @Override

@@ -12,6 +12,9 @@ public class Section {
     @SerializedName("abstract")
     @Expose
     private String _abstract;
+    @SerializedName("section_name")
+    @Expose
+    private String sectionName;
     @SerializedName("multimedia")
     @Expose
     private List<SectionMultimedium> multimedia = null;
@@ -28,6 +31,10 @@ public class Section {
 
     public void setWebUrl(String webUrl) {
         this.webUrl = webUrl;
+    }
+
+    public String getSectionName() {
+        return sectionName;
     }
 
     public String getAbstract() {

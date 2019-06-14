@@ -16,22 +16,10 @@ public class SearchArticlesResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_article);
+        setContentView(R.layout.activity_search_result);
 
         this.configureToolbar();
         this.configureAndShowArticleFragment();
-    }
-
-    private void configureAndShowArticleFragment(){
-
-        searchResultFragment = (SearchResultFragment) getSupportFragmentManager().findFragmentById(R.id.activity_article_frame_layout);
-
-        if (searchResultFragment == null) {
-            searchResultFragment = new SearchResultFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.activity_article_frame_layout, searchResultFragment)
-                    .commit();
-        }
     }
 
     private void configureToolbar(){
@@ -39,5 +27,16 @@ public class SearchArticlesResultActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void configureAndShowArticleFragment(){
+        searchResultFragment = (SearchResultFragment) getSupportFragmentManager().findFragmentById(R.id.activity_search_result_layout);
+
+        if (searchResultFragment == null) {
+            searchResultFragment = new SearchResultFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.activity_search_result_layout, searchResultFragment)
+                    .commit();
+        }
     }
 }

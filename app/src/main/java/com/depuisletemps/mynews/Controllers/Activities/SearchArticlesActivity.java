@@ -41,8 +41,8 @@ public class SearchArticlesActivity extends AppCompatActivity  implements View.O
     public static final String END_DATE = "endDate";
     public static final String TERMS = "terms";
     public static final String MISSING_INFO = "missingInfo";
-    public static final String DATE_INVERSION = "DateInversion";
-    public static final String FUTURE_DATE = "FutureDate";
+    public static final String DATE_INVERSION = "dateInversion";
+    public static final String FUTURE_DATE = "futureDate";
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -205,7 +205,6 @@ public class SearchArticlesActivity extends AppCompatActivity  implements View.O
                 endDateButton.setText("");
                 displayWarningMessage(FUTURE_DATE);
             }
-
         }
     }
 

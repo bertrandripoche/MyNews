@@ -51,7 +51,7 @@ abstract class BaseFragment extends Fragment {
         // CONFIGURATION
         // -----------------
 
-        private void configureSwipeRefreshLayout(){
+        protected void configureSwipeRefreshLayout(){
             swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {

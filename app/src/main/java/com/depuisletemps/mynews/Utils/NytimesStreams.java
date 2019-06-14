@@ -5,6 +5,8 @@ import com.depuisletemps.mynews.Models.SectionFirstResponse;
 import com.depuisletemps.mynews.Models.MostPopularResponse;
 import com.depuisletemps.mynews.Models.TopStoryResponse;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -37,9 +39,16 @@ public class NytimesStreams {
                 .timeout(10, TimeUnit.SECONDS);
     }
 
-    public static Observable<SectionFirstResponse> streamFetchSearch(String query,String filterQuery){
+    public static Observable<SectionFirstResponse> streamFetchSearch(String query,String filterQuery, String begin, String end){
+        Map<String, String > data = new HashMap<>();
+        if (!query.equals("")) {data.put("q",query);}
+        if (!filterQuery.equals("")) {data.put("fq",filterQuery);}
+        if (!begin.equals("")) {data.put("beginDate",begin);}
+        if (!end.equals("")) {data.put("endDate",end);}
+        System.out.println("Q : "+ query + " -FQ : "+ filterQuery + "- Begin : "+ begin + "- End : "+ end);
+
         NytimesService nytimesService = NytimesService.retrofit.create(NytimesService.class);
-        return nytimesService.getSearchResults(query,filterQuery)
+        return nytimesService.getSearchResults(data)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10, TimeUnit.SECONDS);
