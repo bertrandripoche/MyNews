@@ -33,7 +33,7 @@
                     android:value=".Controllers.Activities.MainActivity" />
             </activity>
             <activity android:name=".Controllers.Activities.SearchArticlesResultActivity"
-                android:label="Search Articles Result"
+                android:label="Search Result"
                 android:parentActivityName=".Controllers.Activities.SearchArticlesActivity">
                 <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
@@ -55,7 +55,13 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".Controllers.Activities.MainActivity" />
             </activity>
-        <activity android:name=".Controllers.Activities.ArticleActivity" />
+        <activity android:name=".Controllers.Activities.ArticleActivity"
+            android:label="Article"
+            android:parentActivityName=".Controllers.Activities.ArticleActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Controllers.Activities.SearchArticlesActivity" />
+        </activity>
     </application>
 
 </manifest>

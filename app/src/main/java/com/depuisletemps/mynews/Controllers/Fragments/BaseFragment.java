@@ -47,7 +47,6 @@ abstract class BaseFragment extends Fragment {
             this.disposeWhenDestroy();
         }
 
-
         // -----------------
         // CONFIGURATION
         // -----------------

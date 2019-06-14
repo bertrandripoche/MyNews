@@ -28,7 +28,10 @@ public interface NytimesService {
     Observable<MostPopularResponse> getMostPopularResults();
 
     @GET(endUrlSection)
-    Observable<SectionFirstResponse> getSectionResults(@Query("fq") String sectionName);
+    Observable<SectionFirstResponse> getSectionResults(@Query("fq") String filterQuery);
+
+    @GET(endUrlSection)
+    Observable<SectionFirstResponse> getSearchResults(@Query("q") String query, @Query("fq") String filterQuery);
 
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.nytimes.com/")

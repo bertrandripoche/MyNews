@@ -4,27 +4,22 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
 import com.depuisletemps.mynews.Controllers.Fragments.SearchResultFragment;
 import com.depuisletemps.mynews.R;
 
 public class SearchArticlesResultActivity extends AppCompatActivity {
+    private static final String TAG = SearchResultFragment.class.getName();
+
     private SearchResultFragment searchResultFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_articles_result);
+        setContentView(R.layout.activity_article);
 
         this.configureToolbar();
-
-
-        Bundle bundle = getIntent().getExtras();
-        String test = bundle.getString("begin");
-        Log.e("TAG", test);
-
-        //this.configureAndShowArticleFragment();
+        this.configureAndShowArticleFragment();
     }
 
     private void configureAndShowArticleFragment(){
