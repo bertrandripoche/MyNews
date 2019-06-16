@@ -1,6 +1,9 @@
 package com.depuisletemps.mynews.Controllers.Activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -16,12 +19,17 @@ import android.view.MenuItem;
 import com.depuisletemps.mynews.R;
 import com.depuisletemps.mynews.Views.PageAdapter;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ViewPager pager;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
+
+    private static final String CHANNEL_ID = "CHANNEL_ID";
+    private int NOTIFICATION_ID  = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.configureViewPagerAndTabs();
         this.configureDrawerLayout();
         this.configureNavigationView();
+        this.createNotificationChannel();
     }
 
     @Override
@@ -163,4 +172,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.startActivity(myIntent);
     }
 
+    private void createNotificationChannel() {
+        // Créer le NotificationChannel, seulement pour API 26+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Notification channel name";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription("Notification channel description");
+            // Enregister le canal sur le système : attention de ne plus rien modifier après
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            Objects.requireNonNull(notificationManager).createNotificationChannel(channel);
+        }
+    }
 }

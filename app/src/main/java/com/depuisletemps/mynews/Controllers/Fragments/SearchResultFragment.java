@@ -1,15 +1,15 @@
 package com.depuisletemps.mynews.Controllers.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.depuisletemps.mynews.Controllers.Activities.SearchArticlesActivity;
 import com.depuisletemps.mynews.Models.Section;
 import com.depuisletemps.mynews.Models.SectionFirstResponse;
 import com.depuisletemps.mynews.R;
@@ -93,7 +93,14 @@ public class SearchResultFragment extends BaseFragment {
             public void onNext(SectionFirstResponse results) {
                 Log.e(TAG, "On Next");
                 List<Section> sections = results.getResponse().getDocs();
-                updateUI(sections);
+
+                if (results.getResponse().getMeta().getHits() == 0) {
+                    Toast.makeText(getContext(), R.string.no_result_warning_message, Toast.LENGTH_LONG).show();
+                    Intent myIntent = new Intent(getContext(),SearchArticlesActivity.class);
+                    startActivity(myIntent);
+                } else {
+                    updateUI(sections);
+                }
             }
 
             @Override

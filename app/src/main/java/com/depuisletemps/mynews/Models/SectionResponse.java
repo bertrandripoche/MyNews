@@ -10,7 +10,15 @@ public class SectionResponse {
     @Expose
     private List<Section> docs = null;
 
+    @SerializedName("meta")
+    @Expose
+    private SectionInfo meta = null;
+
     public List<Section> getDocs() {
         return docs;
+    }
+
+    public SectionInfo getMeta() {
+        return meta;
     }
 }

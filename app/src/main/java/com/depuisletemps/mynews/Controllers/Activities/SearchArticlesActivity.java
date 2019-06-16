@@ -28,10 +28,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class SearchArticlesActivity extends AppCompatActivity  implements View.OnClickListener{
+public class SearchArticlesActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView beginDateButton, endDateButton, queryTerms;
-    private CheckBox cbBusiness,cbBooks,cbScience,cbSports,cbTelevision,cbWorld;
+    private CheckBox cbArts,cbBooks,cbScience,cbSports,cbTechnology,cbWorld;
     private List<CheckBox> checkBoxesArray;
     private Button searchButton;
 
@@ -60,14 +60,14 @@ public class SearchArticlesActivity extends AppCompatActivity  implements View.O
         endDateButton.setOnClickListener(this);
         searchButton.setOnClickListener(this);
 
+        cbArts = findViewById(R.id.activity_form_checkbox_arts);
         cbBooks = findViewById(R.id.activity_form_checkbox_books);
-        cbBusiness = findViewById(R.id.activity_form_checkbox_business);
         cbScience = findViewById(R.id.activity_form_checkbox_science);
         cbSports = findViewById(R.id.activity_form_checkbox_sports);
-        cbTelevision = findViewById(R.id.activity_form_checkbox_television);
+        cbTechnology = findViewById(R.id.activity_form_checkbox_technology);
         cbWorld = findViewById(R.id.activity_form_checkbox_world);
 
-        checkBoxesArray = Arrays.asList(cbWorld,cbTelevision,cbSports,cbScience,cbBusiness,cbBooks);
+        checkBoxesArray = Arrays.asList(cbWorld,cbBooks,cbSports,cbScience,cbTechnology,cbBooks);
     }
 
     @Override
