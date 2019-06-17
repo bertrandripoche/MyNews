@@ -49,5 +49,6 @@
     <string name="notification_title">My news : articles du jour</string>
     <string name="no_query_item_warning_message">A query term is required.</string>
     <string name="no_category_warning_message">At least one category checked</string>
+    <string name="notification_created">Notification created</string>
 
 </resources>

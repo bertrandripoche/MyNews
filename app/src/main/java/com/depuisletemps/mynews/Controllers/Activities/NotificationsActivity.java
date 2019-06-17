@@ -133,7 +133,7 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
 
         if (v.equals(switchNotification)) {
-            if (checkNotificationConditionValidity() && switchNotification.isChecked()) {createNotification();Toast.makeText(this, "Notification created", Toast.LENGTH_LONG).show();}
+            if (checkNotificationConditionValidity() && switchNotification.isChecked()) {createNotification();Toast.makeText(this, R.string.notification_created, Toast.LENGTH_LONG).show();}
             if (!switchNotification.isChecked()) {stopAlarm();}
         }
 
@@ -190,6 +190,10 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this,1, intent, 0);
+
+        if (calendar.before(Calendar.getInstance())) {
+            calendar.add(Calendar.DATE, 1);
+        }
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
     }

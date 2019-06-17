@@ -48,11 +48,8 @@ public class SearchResultFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         getBundle();
 
-        try {
-            createSearchCriterias();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        try {createSearchCriterias();
+        } catch (ParseException e) {e.printStackTrace();}
     }
 
     private void getBundle() {
@@ -138,9 +135,11 @@ public class SearchResultFragment extends BaseFragment {
         categoriesArray = Arrays.asList("Arts","Books","Science","Sports","Technology","World");
 
         for(String category : categoriesArray) {
-            if (extras.get(category).toString().equals("checked")) {
-                sectionName = (sectionName.equals("")) ? category : sectionName+ "\" \"" +category;
-            }
+            if (extras.get(category) != null) {
+                if (extras.get(category).toString().equals("checked")) {
+                    sectionName = (sectionName.equals("")) ? category : sectionName+ "\" \"" +category;
+                }
+            } else {sectionPartQuery="";}
         }
 
         if (!sectionName.equals("")) {sectionPartQuery = "section_name:(" + sectionName + ")";}
