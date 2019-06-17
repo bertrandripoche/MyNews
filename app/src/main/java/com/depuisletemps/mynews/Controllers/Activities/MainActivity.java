@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
 
     private static final String CHANNEL_ID = "CHANNEL_ID";
-    private int NOTIFICATION_ID  = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,13 +172,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void createNotificationChannel() {
-        // Créer le NotificationChannel, seulement pour API 26+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "Notification channel name";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
             channel.setDescription("Notification channel description");
-            // Enregister le canal sur le système : attention de ne plus rien modifier après
+
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             Objects.requireNonNull(notificationManager).createNotificationChannel(channel);
         }

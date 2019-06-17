@@ -2,10 +2,8 @@ package com.depuisletemps.mynews.Controllers.Activities;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +14,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.depuisletemps.mynews.R;
@@ -25,22 +22,32 @@ import com.depuisletemps.mynews.Utils.AlertReceiver;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 public class NotificationsActivity extends AppCompatActivity implements View.OnClickListener {
     private SwitchCompat switchNotification;
     private EditText queryTerms;
     private CheckBox cbArts,cbBooks,cbScience,cbSports,cbTechnology,cbWorld;
     private List<CheckBox> checkBoxesArray;
+    private NotificationSharedPreferences notificationSharedPreferences;
 
     private static final String CHANNEL_ID = "CHANNEL_ID";
-    private int NOTIFICATION_ID  = 1;
+
+    private static final String PREFS_TERMS = "terms";
+    private static final String PREFS_ARTS = "arts";
+    private static final String PREFS_BOOKS = "books";
+    private static final String PREFS_SCIENCE = "science";
+    private static final String PREFS_SPORTS = "sports";
+    private static final String PREFS_TECHNOLOGY = "technology";
+    private static final String PREFS_WORLD = "world";
+    private static final String PREFS_SWITCH = "switch";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
 
-        this.configureToolbar();
+        notificationSharedPreferences = new NotificationSharedPreferences();
 
         switchNotification = findViewById(R.id.activity_notif_switch);
         queryTerms = findViewById(R.id.activity_notif_input);
@@ -52,14 +59,51 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
         cbWorld = findViewById(R.id.activity_form_checkbox_world);
         checkBoxesArray = Arrays.asList(cbWorld,cbArts,cbSports,cbScience,cbTechnology,cbBooks);
 
+        this.configureToolbar();
+        this.restoreNotificationSharedPreferences();
+
         switchNotification.setOnClickListener(this);
         queryTerms.addTextChangedListener(textWatcher);
         cbArts.setOnClickListener(this);
         cbBooks.setOnClickListener(this);
-        cbBooks.setOnClickListener(this);
+        cbWorld.setOnClickListener(this);
         cbScience.setOnClickListener(this);
         cbSports.setOnClickListener(this);
         cbTechnology.setOnClickListener(this);
+    }
+
+    private void restoreNotificationSharedPreferences() {
+        if (! notificationSharedPreferences.getAllPreferences(this).isEmpty()) {
+
+            if (!notificationSharedPreferences.getPreferences(this, PREFS_TERMS).equals("")) {
+                String text = notificationSharedPreferences.getPreferences(this, PREFS_TERMS);
+                queryTerms.setText(text);
+            }
+            if (notificationSharedPreferences.getBooleanPreferences(this, PREFS_ARTS)) {
+                cbArts.setChecked(true);
+            }
+            if (notificationSharedPreferences.getBooleanPreferences(this, PREFS_BOOKS)) {
+                cbBooks.setChecked(true);
+            }
+            if (notificationSharedPreferences.getBooleanPreferences(this, PREFS_SCIENCE)) {
+                cbScience.setChecked(true);
+            }
+            if (notificationSharedPreferences.getBooleanPreferences(this, PREFS_SPORTS)) {
+                cbSports.setChecked(true);
+            }
+            if (notificationSharedPreferences.getBooleanPreferences(this, PREFS_TECHNOLOGY)) {
+                cbTechnology.setChecked(true);
+            }
+            if (notificationSharedPreferences.getBooleanPreferences(this, PREFS_WORLD)) {
+                cbWorld.setChecked(true);
+            }
+            if (notificationSharedPreferences.getBooleanPreferences(this, PREFS_SWITCH)) {
+                switchNotification.setChecked(true);
+            }
+
+            stopAlarm();
+            createNotification();
+        }
     }
 
     private void configureToolbar(){
@@ -81,13 +125,7 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
 
         @Override
         public void afterTextChanged(Editable s) {
-
-            if (checkNotificationConditionValidity()) {
-                Toast.makeText(getBaseContext(), "Notif valide", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(getBaseContext(), "Notif INVALIDE", Toast.LENGTH_LONG).show();
-                //if (switchNotification.isChecked()) {switchNotification.setChecked(false);}
-            }
+            if (switchNotification.isChecked()) {switchNotification.setChecked(false); stopAlarm();}
         }
     };
 
@@ -95,8 +133,8 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
 
         if (v.equals(switchNotification)) {
-            Toast.makeText(this, "Enable notif", Toast.LENGTH_LONG).show();
-            if (checkNotificationConditionValidity()) {createNotification();}
+            if (checkNotificationConditionValidity()) {createNotification();Toast.makeText(this, "Notification created", Toast.LENGTH_LONG).show();}
+            if (!switchNotification.isChecked()) {stopAlarm();}
         }
 
         else if (v.equals(cbArts) ||v.equals(cbBooks) || v.equals(cbScience)||v.equals(cbSports)||v.equals(cbTechnology)||v.equals(cbWorld)) {
@@ -129,7 +167,7 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
     private void disableNotificationSwitch(String message) {
         if (switchNotification.isChecked()) {
             switchNotification.setChecked(false);
-            stoptAlarm();
+            stopAlarm();
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
     }
@@ -141,22 +179,29 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
         calendar.set(Calendar.SECOND,0);
 
         startAlarm(calendar);
+        saveNotificationSharedPreferences();
+    }
+
+    private void saveNotificationSharedPreferences() {
+        notificationSharedPreferences.storeNotificationParameters(this, queryTerms.getText().toString(), cbArts.isChecked(), cbBooks.isChecked(), cbScience.isChecked(), cbSports.isChecked(), cbTechnology.isChecked(), cbWorld.isChecked());
     }
 
     private void startAlarm(Calendar calendar) {
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,NOTIFICATION_ID, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,1, intent, 0);
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),60000,pendingIntent);
     }
 
-    private void stoptAlarm() {
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+    private void stopAlarm() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,NOTIFICATION_ID, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,1, intent, 0);
 
         alarmManager.cancel(pendingIntent);
+
+        notificationSharedPreferences.clearPreferences(this);
     }
 
 }

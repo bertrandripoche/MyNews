@@ -10,17 +10,18 @@ import com.depuisletemps.mynews.R;
 
 public class AlertReceiver extends BroadcastReceiver {
     private static final String CHANNEL_ID = "CHANNEL_ID";
-    private int NOTIFICATION_ID  = 1;
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_stat_nytimes_logo)
                 .setContentTitle("Titre à changer")
                 .setContentText("Texte à changer")
+                .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-        notificationManager.notify(NOTIFICATION_ID, builder.build());
+        notificationManager.notify(1, builder.build());
     }
 }
