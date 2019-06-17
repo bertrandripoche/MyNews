@@ -1,10 +1,9 @@
-package com.depuisletemps.mynews.Controllers.Activities;
+package com.depuisletemps.mynews.Models;
 
 import android.content.Context;
 
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import java.util.Map;
 

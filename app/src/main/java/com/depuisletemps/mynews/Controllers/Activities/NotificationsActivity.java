@@ -16,13 +16,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.depuisletemps.mynews.Models.NotificationSharedPreferences;
 import com.depuisletemps.mynews.R;
 import com.depuisletemps.mynews.Utils.AlertReceiver;
 
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 
 public class NotificationsActivity extends AppCompatActivity implements View.OnClickListener {
     private SwitchCompat switchNotification;
@@ -174,9 +174,9 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
 
     private final void createNotification(){
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY,7);
-        calendar.set(Calendar.MINUTE,0);
-        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.HOUR_OF_DAY,9);
+        calendar.set(Calendar.MINUTE,00);
+        calendar.set(Calendar.SECOND,00);
 
         startAlarm(calendar);
         saveNotificationSharedPreferences();

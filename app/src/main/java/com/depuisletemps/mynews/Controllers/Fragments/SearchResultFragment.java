@@ -34,8 +34,8 @@ public class SearchResultFragment extends BaseFragment {
     private SectionAdapter adapter;
     private Bundle extras;
 
-    private String query;
-    private String filterQuery;
+    private String query = "";
+    private String filterQuery = "";
     private String begin = "";
     private String end = "";
 
@@ -127,7 +127,6 @@ public class SearchResultFragment extends BaseFragment {
         if (extras.get("terms") == null) {
             return "";
         } else {
-
             return extras.get("terms").toString().replace(" ","+");
         }
     }
