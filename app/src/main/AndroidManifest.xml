@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_mynews_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Controllers.Activities.MainActivity">
+        <activity android:name=".controllers.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,52 +20,52 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-            <activity android:name=".Controllers.Activities.NotificationsActivity"
+            <activity android:name=".controllers.activities.NotificationsActivity"
                 android:label="Notifications"
-                android:parentActivityName=".Controllers.Activities.MainActivity">
+                android:parentActivityName=".controllers.activities.MainActivity">
                 <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".Controllers.Activities.MainActivity" />
+                    android:value=".controllers.activities.MainActivity" />
             </activity>
-            <activity android:name=".Controllers.Activities.SearchArticlesActivity"
+            <activity android:name=".controllers.activities.SearchArticlesActivity"
                 android:label="Search Articles"
-                android:parentActivityName=".Controllers.Activities.MainActivity">
+                android:parentActivityName=".controllers.activities.MainActivity">
                 <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".Controllers.Activities.MainActivity" />
+                    android:value=".controllers.activities.MainActivity" />
             </activity>
-            <activity android:name=".Controllers.Activities.SearchArticlesResultActivity"
+            <activity android:name=".controllers.activities.SearchArticlesResultActivity"
                 android:label="Search Result"
-                android:parentActivityName=".Controllers.Activities.SearchArticlesActivity">
+                android:parentActivityName=".controllers.activities.SearchArticlesActivity">
                 <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".Controllers.Activities.SearchArticlesActivity" />
+                    android:value=".controllers.activities.SearchArticlesActivity" />
             </activity>
             <activity
-                android:name=".Controllers.Activities.AboutActivity"
+                android:name=".controllers.activities.AboutActivity"
                 android:label="About"
-                android:parentActivityName=".Controllers.Activities.MainActivity">
+                android:parentActivityName=".controllers.activities.MainActivity">
                 <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".Controllers.Activities.MainActivity" />
+                    android:value=".controllers.activities.MainActivity" />
             </activity>
             <activity
-                android:name=".Controllers.Activities.HelpActivity"
+                android:name=".controllers.activities.HelpActivity"
                 android:label="Help"
-                android:parentActivityName=".Controllers.Activities.MainActivity">
+                android:parentActivityName=".controllers.activities.MainActivity">
                 <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".Controllers.Activities.MainActivity" />
+                    android:value=".controllers.activities.MainActivity" />
             </activity>
-        <activity android:name=".Controllers.Activities.ArticleActivity"
+        <activity android:name=".controllers.activities.ArticleActivity"
             android:label="Article"
-            android:parentActivityName=".Controllers.Activities.ArticleActivity">
+            android:parentActivityName=".controllers.activities.ArticleActivity">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".Controllers.Activities.SearchArticlesActivity" />
+            android:value=".controllers.activities.SearchArticlesActivity" />
         </activity>
 
-        <receiver android:name=".Utils.AlertReceiver"/>
+        <receiver android:name=".utils.AlertReceiver"/>
     </application>
 
 </manifest>
