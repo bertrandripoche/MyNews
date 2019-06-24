@@ -23,6 +23,7 @@ import com.depuisletemps.mynews.utils.AlertReceiver;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 public class NotificationsActivity extends AppCompatActivity implements View.OnClickListener {
     private SwitchCompat switchNotification;
@@ -31,8 +32,6 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
     private CheckBox cbArts,cbBooks,cbScience,cbSports,cbTechnology,cbWorld;
     private List<CheckBox> checkBoxesArray;
     private NotificationSharedPreferences notificationSharedPreferences;
-
-    private static final String CHANNEL_ID = "CHANNEL_ID";
 
     private static final String PREFS_TERMS = "terms";
     private static final String PREFS_ARTS = "arts";
@@ -76,7 +75,7 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
     private void restoreNotificationSharedPreferences() {
         if (!notificationSharedPreferences.getAllPreferences(this).isEmpty()) {
 
-            if (!notificationSharedPreferences.getPreferences(this, PREFS_TERMS).equals("")) {
+            if (!Objects.equals(notificationSharedPreferences.getPreferences(this, PREFS_TERMS), "")) {
                 String text = notificationSharedPreferences.getPreferences(this, PREFS_TERMS);
                 queryTerms.setText(text);
             }
@@ -111,6 +110,7 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
+        assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
@@ -134,34 +134,32 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
 
         if (v.equals(switchNotification)) {
-            if (checkNotificationConditionValidity() && switchNotification.isChecked()) {createNotification();Toast.makeText(this, R.string.notification_created, Toast.LENGTH_LONG).show();}
+            if (checkNotificationConditionValidity(queryTerms.getText().toString(), getString(R.string.no_query_item_warning_message), getString(R.string.no_category_warning_message)) && switchNotification.isChecked()) {createNotification();Toast.makeText(this, R.string.notification_created, Toast.LENGTH_LONG).show();}
             if (!switchNotification.isChecked()) {stopAlarm();}
         }
 
         else if (v.equals(cbArts) ||v.equals(cbBooks) || v.equals(cbScience)||v.equals(cbSports)||v.equals(cbTechnology)||v.equals(cbWorld)) {
-            checkNotificationConditionValidity();
+            checkNotificationConditionValidity(queryTerms.getText().toString(), getString(R.string.no_query_item_warning_message), getString(R.string.no_category_warning_message));
         }
     }
 
-    public boolean checkNotificationConditionValidity() {
-        if (!checkQueryTermValidity()) {return false;}
-        if (!checkCategoriesValidity()) {return false;}
-        return true;
+    public boolean checkNotificationConditionValidity(String queryTerm, String msgQueryTerm, String msgCategory) {
+        return checkQueryTermValidity(queryTerm ,msgQueryTerm) && checkCategoriesValidity(checkBoxesArray, msgCategory);
     }
 
-    public boolean checkQueryTermValidity() {
-        if (queryTerms.getText().toString().equals("")) {
-            disableNotificationSwitch(getString(R.string.no_query_item_warning_message));
+    public boolean checkQueryTermValidity(String queryTerm, String message) {
+        if (queryTerm.equals("")) {
+            disableNotificationSwitch(message);
             return false;
         }
         return true;
     }
 
-    public boolean checkCategoriesValidity() {
+    public boolean checkCategoriesValidity(List<CheckBox> checkBoxesArray, String message) {
         for(CheckBox checkBox : checkBoxesArray) {
             if (checkBox.isChecked()) {return true;}
         }
-        disableNotificationSwitch(getString(R.string.no_category_warning_message));
+        disableNotificationSwitch(message);
         return false;
     }
 
@@ -209,11 +207,4 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
         notificationSharedPreferences.clearPreferences(this);
     }
 
-    public EditText getQueryTerms() {
-        return queryTerms;
-    }
-
-    public void setQueryTerms(EditText queryTerms) {
-        this.queryTerms = queryTerms;
-    }
 }
