@@ -16,7 +16,5 @@ public class SectionInfo {
         return hits;
     }
 
-    public int getOffset() {
-        return offset;
-    }
+   // public int getOffset() {return offset;}
 }

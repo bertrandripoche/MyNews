@@ -8,10 +8,9 @@ import android.support.v7.widget.Toolbar;
 import com.depuisletemps.mynews.controllers.fragments.SearchResultFragment;
 import com.depuisletemps.mynews.R;
 
-public class SearchArticlesResultActivity extends AppCompatActivity {
-    private static final String TAG = SearchResultFragment.class.getName();
+import java.util.Objects;
 
-    private SearchResultFragment searchResultFragment;
+public class SearchArticlesResultActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +25,11 @@ public class SearchArticlesResultActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(ab).setDisplayHomeAsUpEnabled(true);
     }
 
     private void configureAndShowArticleFragment(){
-        searchResultFragment = (SearchResultFragment) getSupportFragmentManager().findFragmentById(R.id.activity_search_result_layout);
+        SearchResultFragment searchResultFragment = (SearchResultFragment) getSupportFragmentManager().findFragmentById(R.id.activity_search_result_layout);
 
         if (searchResultFragment == null) {
             searchResultFragment = new SearchResultFragment();

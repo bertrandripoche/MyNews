@@ -11,7 +11,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 public interface NytimesService {
@@ -30,13 +29,9 @@ public interface NytimesService {
     Observable<MostPopularResponse> getMostPopularResults();
 
     @GET(endUrlSection)
-    Observable<SectionFirstResponse> getSectionResults(@Query("fq") String filterQuery);
-
-    @GET(endUrlSection)
     Observable<SectionFirstResponse> getSearchResults(@QueryMap Map<String, String> options);
 
-
-    public static final Retrofit retrofit = new Retrofit.Builder()
+    Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.nytimes.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

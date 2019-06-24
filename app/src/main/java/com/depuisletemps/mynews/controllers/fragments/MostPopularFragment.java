@@ -34,7 +34,6 @@ public class MostPopularFragment extends BaseFragment {
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                        Log.e("TAG", "Position : "+position);
                         String url = mostPopulars.get(position).getUrl();
                         startArticleActivity(url);
                     }
@@ -52,20 +51,17 @@ public class MostPopularFragment extends BaseFragment {
         this.disposable = NytimesStreams.streamFetchMostPopulars().subscribeWith(new DisposableObserver<MostPopularResponse>() {
             @Override
             public void onNext(MostPopularResponse results) {
-                Log.e("TAG","On Next");
                 List<MostPopular> mostPopulars = results.getMostPopulars();
                 updateUI(mostPopulars);
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.e("TAG","On Error"+Log.getStackTraceString(e));
+                Log.e("TAG", "On Error" + Log.getStackTraceString(e));
             }
 
             @Override
-            public void onComplete() {
-                Log.e("TAG","On Complete !!");
-            }
+            public void onComplete() {  }
 
         });
     }

@@ -29,20 +29,8 @@ public class Section {
         return webUrl;
     }
 
-    public void setWebUrl(String webUrl) {
-        this.webUrl = webUrl;
-    }
-
     public String getSectionName() {
         return sectionName;
-    }
-
-    public String getAbstract() {
-        return _abstract;
-    }
-
-    public void setAbstract(String _abstract) {
-        this._abstract = _abstract;
     }
 
     public List<SectionMultimedium> getMultimedia() {

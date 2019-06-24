@@ -1,5 +1,6 @@
 package com.depuisletemps.mynews.controllers.fragments;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
 import android.content.Intent;
@@ -34,7 +35,7 @@ abstract class BaseFragment extends Fragment {
         protected Disposable disposable;
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.fragment_main, container, false);
             ButterKnife.bind(this, view);
             this.configureSwipeRefreshLayout();

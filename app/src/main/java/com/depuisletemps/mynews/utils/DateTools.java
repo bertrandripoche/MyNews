@@ -1,24 +1,27 @@
 package com.depuisletemps.mynews.utils;
 
+import android.annotation.SuppressLint;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class DateTools {
-
+    @SuppressLint("SimpleDateFormat")
     private final static SimpleDateFormat WRONG_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+    @SuppressLint("SimpleDateFormat")
     private final static SimpleDateFormat RIGHT_DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
 
     public static Date getToday() {
         return new Date();
     }
 
-    public static String getTodayString() {
+    static String getTodayString() {
         return RIGHT_DATE_FORMAT.format(getToday());
     }
 
-    public static String getYesterdayString() {
+    static String getYesterdayString() {
         return RIGHT_DATE_FORMAT.format(yesterday());
     }
 

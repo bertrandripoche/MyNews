@@ -1,5 +1,6 @@
 package com.depuisletemps.mynews.utils;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -30,7 +31,7 @@ public class ItemClickSupport {
     private RecyclerView.OnChildAttachStateChangeListener mAttachListener
             = new RecyclerView.OnChildAttachStateChangeListener() {
         @Override
-        public void onChildViewAttachedToWindow(View view) {
+        public void onChildViewAttachedToWindow(@NonNull View view) {
             if (mOnItemClickListener != null) {
                 view.setOnClickListener(mOnClickListener);
             }
@@ -40,7 +41,7 @@ public class ItemClickSupport {
         }
 
         @Override
-        public void onChildViewDetachedFromWindow(View view) {
+        public void onChildViewDetachedFromWindow(@NonNull View view) {
         }
     };
 
@@ -59,27 +60,9 @@ public class ItemClickSupport {
         return support;
     }
 
-    public static ItemClickSupport removeFrom(RecyclerView view, int itemID) {
-        ItemClickSupport support = (ItemClickSupport) view.getTag(itemID);
-        if (support != null) {
-            support.detach(view);
-        }
-        return support;
-    }
-
     public ItemClickSupport setOnItemClickListener(OnItemClickListener listener) {
         mOnItemClickListener = listener;
         return this;
-    }
-
-    public ItemClickSupport setOnItemLongClickListener(OnItemLongClickListener listener) {
-        mOnItemLongClickListener = listener;
-        return this;
-    }
-
-    private void detach(RecyclerView view) {
-        view.removeOnChildAttachStateChangeListener(mAttachListener);
-        view.setTag(mItemID, null);
     }
 
     public interface OnItemClickListener {

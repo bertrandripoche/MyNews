@@ -10,7 +10,6 @@
             android:title="@string/search">
         </item>
         <item
-            android:id="@+id/menu_activity_main_params"
             android:icon="@drawable/baseline_more_vert_24"
             android:iconTint="@color/white"
             app:showAsAction="always"

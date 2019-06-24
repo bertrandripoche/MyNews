@@ -8,9 +8,9 @@ import android.support.v7.widget.Toolbar;
 import com.depuisletemps.mynews.controllers.fragments.ArticleFragment;
 import com.depuisletemps.mynews.R;
 
-public class ArticleActivity extends AppCompatActivity {
+import java.util.Objects;
 
-    private ArticleFragment articleFragment;
+public class ArticleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class ArticleActivity extends AppCompatActivity {
 
     private void configureAndShowArticleFragment(){
 
-        articleFragment = (ArticleFragment) getSupportFragmentManager().findFragmentById(R.id.activity_article_frame_layout);
+        ArticleFragment articleFragment = (ArticleFragment) getSupportFragmentManager().findFragmentById(R.id.activity_article_frame_layout);
 
         if (articleFragment == null) {
             articleFragment = new ArticleFragment();
@@ -37,7 +37,7 @@ public class ArticleActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(ab).setDisplayHomeAsUpEnabled(true);
     }
 
 }

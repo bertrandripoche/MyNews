@@ -69,7 +69,6 @@ public class SectionFragment extends BaseFragment {
         this.disposable = NytimesStreams.streamFetchSearch(data).subscribeWith(new DisposableObserver<SectionFirstResponse>() {
             @Override
             public void onNext(SectionFirstResponse results) {
-                Log.e("TAG", "On Next");
                 List<Section> sections = results.getResponse().getDocs();
                 updateUI(sections);
             }
@@ -81,7 +80,6 @@ public class SectionFragment extends BaseFragment {
 
             @Override
             public void onComplete() {
-                Log.e("TAG", "On Complete !!");
             }
 
         });

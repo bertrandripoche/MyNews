@@ -43,14 +43,6 @@ import com.google.gson.annotations.SerializedName;
             return title;
         }
 
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getAbstract() {
-            return _abstract;
-        }
-
         public String getUrl() {
             return url;
         }
@@ -61,10 +53,6 @@ import com.google.gson.annotations.SerializedName;
 
         public List<TopStoryMultimedium> getMultimedia() {
             return multimedia;
-        }
-
-        public String getShortUrl() {
-            return shortUrl;
         }
 
     }

@@ -51,7 +51,6 @@ public class TopStoryFragment extends BaseFragment {
         this.disposable = NytimesStreams.streamFetchTopStories().subscribeWith(new DisposableObserver<TopStoryResponse>() {
             @Override
             public void onNext(TopStoryResponse results) {
-                Log.e("TAG","On Next");
                 List<TopStory> stories = results.getTopStories();
                 updateUI(stories);
             }
@@ -62,9 +61,7 @@ public class TopStoryFragment extends BaseFragment {
             }
 
             @Override
-            public void onComplete() {
-                Log.e("TAG","On Complete !!");
-            }
+            public void onComplete() { }
 
         });
     }

@@ -28,22 +28,7 @@ public class NytimesStreams {
                 .timeout(10, TimeUnit.SECONDS);
     }
 
-    public static Observable<SectionFirstResponse> streamFetchSection(String sectionName){
-        NytimesService nytimesService = NytimesService.retrofit.create(NytimesService.class);
-        String querySectionName = "section_name:(\""+sectionName+"\")";
-        return nytimesService.getSectionResults(querySectionName)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .timeout(10, TimeUnit.SECONDS);
-    }
-
-    public static Observable<SectionFirstResponse> streamFetchSearch(/*String query,String filterQuery, String begin, String end*/Map<String, String > data){
-        /*Map<String, String > data = new HashMap<>();
-        if (!query.equals("")) {data.put("q",query);}
-        if (!filterQuery.equals("")) {data.put("fq",filterQuery);}
-        if (!begin.equals("")) {data.put("beginDate",begin);}
-        if (!end.equals("")) {data.put("endDate",end);}
-        System.out.println("Q : "+ query + " -FQ : "+ filterQuery + "- Begin : "+ begin + "- End : "+ end);*/
+    public static Observable<SectionFirstResponse> streamFetchSearch(Map<String, String > data){
 
         NytimesService nytimesService = NytimesService.retrofit.create(NytimesService.class);
         return nytimesService.getSearchResults(data)

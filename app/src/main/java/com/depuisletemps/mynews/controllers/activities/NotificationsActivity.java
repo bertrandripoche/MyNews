@@ -110,8 +110,7 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
-        assert ab != null;
-        ab.setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(ab).setDisplayHomeAsUpEnabled(true);
     }
 
     private TextWatcher textWatcher = new TextWatcher() {
@@ -194,7 +193,7 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
             calendar.add(Calendar.DATE, 1);
         }*/
 
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),/*AlarmManager.INTERVAL_DAY*/60000,pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY/*60000*/,pendingIntent);
     }
 
     public void stopAlarm() {

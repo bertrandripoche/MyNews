@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import io.reactivex.observers.DisposableObserver;
 
@@ -54,7 +55,7 @@ public class SearchResultFragment extends BaseFragment {
     }
 
     private void getBundle() {
-        if (getActivity().getIntent().getExtras() != null) {
+        if (Objects.requireNonNull(getActivity()).getIntent().getExtras() != null) {
             extras = getActivity().getIntent().getExtras();
         }
     }
@@ -91,7 +92,6 @@ public class SearchResultFragment extends BaseFragment {
         this.disposable = NytimesStreams.streamFetchSearch(data).subscribeWith(new DisposableObserver<SectionFirstResponse>() {
             @Override
             public void onNext(SectionFirstResponse results) {
-                Log.e(TAG, "On Next");
                 List<Section> sections = results.getResponse().getDocs();
 
                 if (results.getResponse().getMeta().getHits() == 0) {
@@ -109,9 +109,7 @@ public class SearchResultFragment extends BaseFragment {
             }
 
             @Override
-            public void onComplete() {
-                Log.e(TAG, "On Complete !!");
-            }
+            public void onComplete() { }
 
         });
     }
@@ -127,7 +125,7 @@ public class SearchResultFragment extends BaseFragment {
         if (extras.get("terms") == null) {
             return "";
         } else {
-            return extras.get("terms").toString().replace(" ","+");
+            return Objects.requireNonNull(extras.get("terms")).toString().replace(" ","+");
         }
     }
 
@@ -139,7 +137,7 @@ public class SearchResultFragment extends BaseFragment {
 
         for(String category : categoriesArray) {
             if (extras.get(category) != null) {
-                if (extras.get(category).toString().equals("checked")) {
+                if (Objects.requireNonNull(extras.get(category)).toString().equals("checked")) {
                     sectionName = (sectionName.equals("")) ? category : sectionName+ "\" \"" +category;
                 }
             } else {sectionPartQuery="";}
@@ -149,16 +147,13 @@ public class SearchResultFragment extends BaseFragment {
         return sectionPartQuery;
     }
 
-    private String buildDatePart() throws ParseException {
-        String datePartQuery = "";
-        if (!extras.get("beginDate").toString().equals("")) {
-            begin = DateTools.getDateStringFromString(extras.get("beginDate").toString());
+    private void buildDatePart() throws ParseException {
+        if (!Objects.requireNonNull(extras.get("beginDate")).toString().equals("")) {
+            begin = DateTools.getDateStringFromString(Objects.requireNonNull(extras.get("beginDate")).toString());
         }
-        if (!extras.get("endDate").toString().equals("")) {
-            end = DateTools.getDateStringFromString(extras.get("endDate").toString());
+        if (!Objects.requireNonNull(extras.get("endDate")).toString().equals("")) {
+            end = DateTools.getDateStringFromString(Objects.requireNonNull(extras.get("endDate")).toString());
         }
-
-        return datePartQuery;
     }
 
 }

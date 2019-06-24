@@ -29,48 +29,20 @@ public class MostPopular {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getSection() {
         return section;
-    }
-
-    public void setSection(String section) {
-        this.section = section;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAbstract() {
-        return _abstract;
-    }
-
-    public void setAbstract(String _abstract) {
-        this._abstract = _abstract;
-    }
-
     public String getPublishedDate() {
         return publishedDate;
     }
 
-    public void setPublishedDate(String publishedDate) {
-        this.publishedDate = publishedDate;
-    }
-
     public List<MostPopularMedium> getMedia() {
         return media;
-    }
-
-    public void setMedia(List<MostPopularMedium> media) {
-        this.media = media;
     }
 
 }

@@ -46,7 +46,6 @@
     <string name="form_warning_inversion_date">Begin date is posterior to End date</string>
     <string name="form_warning_futur_date">We don\'t know any future NYT article !</string>
     <string name="no_result_warning_message">No article found. Return to Search screen.</string>
-    <string name="notification_title">My news : articles du jour</string>
     <string name="no_query_item_warning_message">A query term is required.</string>
     <string name="no_category_warning_message">At least one category checked</string>
     <string name="notification_created">Notification created</string>

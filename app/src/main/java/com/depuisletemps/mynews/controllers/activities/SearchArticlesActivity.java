@@ -27,11 +27,11 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class SearchArticlesActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView beginDateButton, endDateButton, queryTerms;
-    private CheckBox cbArts,cbBooks,cbScience,cbSports,cbTechnology,cbWorld;
     private List<CheckBox> checkBoxesArray;
     private Button searchButton;
 
@@ -60,14 +60,14 @@ public class SearchArticlesActivity extends AppCompatActivity implements View.On
         endDateButton.setOnClickListener(this);
         searchButton.setOnClickListener(this);
 
-        cbArts = findViewById(R.id.activity_form_checkbox_arts);
-        cbBooks = findViewById(R.id.activity_form_checkbox_books);
-        cbScience = findViewById(R.id.activity_form_checkbox_science);
-        cbSports = findViewById(R.id.activity_form_checkbox_sports);
-        cbTechnology = findViewById(R.id.activity_form_checkbox_technology);
-        cbWorld = findViewById(R.id.activity_form_checkbox_world);
+        CheckBox cbArts = findViewById(R.id.activity_form_checkbox_arts);
+        CheckBox cbBooks = findViewById(R.id.activity_form_checkbox_books);
+        CheckBox cbScience = findViewById(R.id.activity_form_checkbox_science);
+        CheckBox cbSports = findViewById(R.id.activity_form_checkbox_sports);
+        CheckBox cbTechnology = findViewById(R.id.activity_form_checkbox_technology);
+        CheckBox cbWorld = findViewById(R.id.activity_form_checkbox_world);
 
-        checkBoxesArray = Arrays.asList(cbWorld,cbBooks,cbSports,cbScience,cbTechnology,cbBooks);
+        checkBoxesArray = Arrays.asList(cbArts, cbBooks, cbScience, cbSports, cbTechnology, cbWorld);
     }
 
     @Override
@@ -100,7 +100,7 @@ public class SearchArticlesActivity extends AppCompatActivity implements View.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(ab).setDisplayHomeAsUpEnabled(true);
     }
 
     private void startSearchArticlesResultActivity(Bundle bundle) {
@@ -116,7 +116,7 @@ public class SearchArticlesActivity extends AppCompatActivity implements View.On
         int day = cal.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog dialog = new DatePickerDialog(SearchArticlesActivity.this,dateSetListener,year,month,day);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(235,134,4)));
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.rgb(235,134,4)));
         dialog.show();
     }
 
@@ -153,20 +153,18 @@ public class SearchArticlesActivity extends AppCompatActivity implements View.On
     }
 
     private boolean isFormValid() throws ParseException {
-        boolean isFormValid = (isCheckBoxesValid() && isSearchTermValid() && isDateValid())? true: false;
-        return isFormValid;
+        return isCheckBoxesValid() && isSearchTermValid() && isDateValid();
     }
 
     private boolean isCheckBoxesValid() {
-            for(CheckBox checkBox : checkBoxesArray) {
-                if (checkBox.isChecked()) {return true;}
-            }
+            for(CheckBox checkBox : checkBoxesArray)
+                if (checkBox.isChecked()) return true;
             return false;
         }
 
     private boolean isSearchTermValid() {
         String terms = queryTerms.getText().toString().trim();
-            if (terms.equals("")) {return false;} else {return true;}
+        return !terms.equals("");
         }
 
     private boolean isDateValid() throws ParseException {
@@ -210,7 +208,7 @@ public class SearchArticlesActivity extends AppCompatActivity implements View.On
 
     private void displayWarningMessage(String errorType) {
         String warningText = "";
-        if (errorType == "futureDate" || errorType == "dateInversion" || errorType == "missingInfo") {
+        if (errorType.equals("futureDate") || errorType.equals("dateInversion") || errorType.equals("missingInfo")) {
             switch (errorType) {
                 case "futureDate" :
                     warningText = getString(R.string.form_warning_futur_date);

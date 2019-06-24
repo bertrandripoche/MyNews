@@ -44,7 +44,6 @@ public class NotificationSharedPreferences {
         return mPreferences.getString(key, null);
     }
 
-    @Nullable
     public boolean getBooleanPreferences(Context context, String key) {
         SharedPreferences mPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         return mPreferences.getBoolean(key, false);
@@ -60,7 +59,7 @@ public class NotificationSharedPreferences {
         android.content.SharedPreferences.Editor editor = mPreferences.edit();
 
         editor.clear();
-        editor.commit();
+        editor.apply();
     }
 
 }
