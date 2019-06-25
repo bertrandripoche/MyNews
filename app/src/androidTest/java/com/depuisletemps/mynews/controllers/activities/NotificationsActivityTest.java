@@ -39,7 +39,7 @@ public class NotificationsActivityTest {
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void notificationsActivityTest() {
+    public void checkNotificationScreenIsPopulatedOnceNotificationHasBeenOnceCreated() {
         ViewInteraction actionMenuItemView = onView(
                 allOf(withContentDescription("Miscellaneous"),
                         childAtPosition(

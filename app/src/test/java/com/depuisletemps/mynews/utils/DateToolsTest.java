@@ -24,16 +24,17 @@ public class DateToolsTest {
 
     @Test
     public void havingAGoodDateStringShouldReturnADateObject() throws Exception{
+        /*Verifier que le jour est bien J, le mois MM*/
         assertTrue(DateTools.getDate("30/6/2019") instanceof Date);
     }
 
     @Test (expected= ParseException.class)
     public void havingAWrongStringShouldNotReturnADateObject() throws Exception{
-        assertTrue(DateTools.getDate("wrong string") instanceof Date);
+        DateTools.getDate("wrong string");
     }
 
     @Test (expected= ParseException.class)
     public void havingAWrongDateStringShouldNotReturnADateObject() throws Exception{
-        assertTrue(DateTools.getDate("20190630") instanceof Date);
+        DateTools.getDate("20190630");
     }
 }
