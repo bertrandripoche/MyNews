@@ -21,6 +21,13 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+    lintOptions {
+        abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
 }
 
 repositories {
@@ -53,4 +60,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     androidTestImplementation 'org.mockito:mockito-android:2.7.22'
+
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.2'
 }

@@ -76,10 +76,6 @@ public class NotificationsActivityTest {
         CheckBox cb3 = mock(CheckBox.class);
         checkBoxes = Arrays.asList(cb1,cb2,cb3);
 
-     //   when(cb1.isChecked()).thenReturn(false);
-     //   when(cb2.isChecked()).thenReturn(false);
-     //   when(cb3.isChecked()).thenReturn(false);
-
         assertFalse(activity.checkCategoriesValidity(checkBoxes, "Msg"));
     }
 
