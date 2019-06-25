@@ -28,23 +28,19 @@ public class NotificationsActivityTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-       // when(mockApplicationContext.getResources()).thenReturn(mockContextResources);
-       // when(mockContextResources.getString(anyInt())).thenReturn("mocked string");
-       // when(mockApplicationContext.getString(anyInt())).thenReturn("mocked string");
-      //  doReturn("mocked string").when(mockApplicationContext).getString(anyInt());
     }
 
     @Test
     public void havingAUserInputShouldReturnTrue() throws Exception {
         NotificationsActivity activity = new NotificationsActivity();
 
+        // Verification que le bouton switch passe a off
         assertTrue(activity.checkQueryTermValidity("Test", "Msg"));
     }
 
     @Test
     public void havingNoUserInputShouldReturnFalse() throws Exception {
         NotificationsActivity activity = mock(NotificationsActivity.class);
-  //      doNothing().when(activity).disableNotificationSwitch("OK");
 
         assertFalse(activity.checkQueryTermValidity("", "Msg"));
     }
@@ -67,8 +63,6 @@ public class NotificationsActivityTest {
     @Test
     public void havingNoCheckboxCheckedShouldReturnFalse() throws Exception {
         NotificationsActivity activity = mock(NotificationsActivity.class);
-
-     //   doNothing().when(activity).disableNotificationSwitch("OK");
 
         List<CheckBox> checkBoxes;
         CheckBox cb1 = mock(CheckBox.class);
