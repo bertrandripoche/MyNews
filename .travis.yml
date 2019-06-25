@@ -10,6 +10,8 @@ android:
 before_install:
   - yes | sdkmanager "platforms;android-28"
 before_script:
+  - export ANDROID_SDK_HOME
+  - android list targets
   - echo no | android create avd --force -n test -t android-28 --abi default/x86
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
