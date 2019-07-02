@@ -1,6 +1,6 @@
 package com.depuisletemps.mynews.controllers.activities;
 
-
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import com.depuisletemps.mynews.R;
+import com.depuisletemps.mynews.models.NotificationSharedPreferences;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -23,6 +24,8 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
 import static android.support.test.espresso.action.ViewActions.replaceText;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
@@ -40,6 +43,10 @@ public class NotificationsActivityTest {
 
     @Test
     public void checkNotificationScreenIsPopulatedOnceNotificationHasBeenOnceCreated() {
+        // Clear preferences to always start from a virgin notification screen
+        NotificationSharedPreferences sharedPreferences = new NotificationSharedPreferences();
+        sharedPreferences.clearPreferences(InstrumentationRegistry.getInstrumentation().getTargetContext());
+
         ViewInteraction actionMenuItemView = onView(
                 allOf(withContentDescription("Miscellaneous"),
                         childAtPosition(
@@ -130,6 +137,10 @@ public class NotificationsActivityTest {
                                 0),
                         isDisplayed()));
         appCompatTextView2.perform(click());
+
+        appCompatEditText.check(matches(withText("obama")));
+        appCompatCheckBox.check(matches(isChecked()));
+        switchCompat.check(matches(isChecked()));
     }
 
     private static Matcher<View> childAtPosition(
