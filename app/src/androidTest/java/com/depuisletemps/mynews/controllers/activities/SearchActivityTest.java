@@ -46,10 +46,10 @@ public class SearchActivityTest {
     @Rule
     public ActivityTestRule<SearchArticlesActivity> mActivityTestRule = new ActivityTestRule<>(SearchArticlesActivity.class);
 
-    @Before
-    public void setUp() throws Exception{
-        Intents.init();
-    }
+//    @Before
+//    public void setUp() throws Exception{
+//        Intents.init();
+//    }
 
     @Test
     public void correctlyAnsweredSearchFormAllowsToLaunchSearchResultActivity() {
