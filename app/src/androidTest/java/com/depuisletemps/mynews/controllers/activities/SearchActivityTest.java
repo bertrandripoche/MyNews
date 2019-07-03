@@ -2,7 +2,6 @@ package com.depuisletemps.mynews.controllers.activities;
 
 
 import android.support.test.espresso.DataInteraction;
-import android.support.test.espresso.ViewAssertion;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.intent.Intents;
 import android.support.test.filters.LargeTest;
