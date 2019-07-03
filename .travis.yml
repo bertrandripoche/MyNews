@@ -1,23 +1,22 @@
 language: android
-dist: trusty
+
 android:
   components:
-    - tools 
     - platform-tools
+    - tools
     - build-tools-24.0.2
     - android-22
     - android-24
     - sys-img-armeabi-v7a-android-22
     - extra-android-m2repository
 before_install:
-  - yes | sdkmanager "platforms;android-24"
+  - yes | sdkmanager "platforms;android-26"
 before_script:
-  - export ANDROID_SDK_ROOT=$ANDROID_HOME
-  - android list targets
-  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a 
-  - emulator -avd test -no-audio -no-window &
+  # Create and start emulator
+  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
-script:
-   - ./gradlew connectedAndroidTest -PdisablePreDex
+script: 
+  - ./gradlew connectedAndroidTest -PdisablePreDex
    
