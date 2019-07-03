@@ -15,6 +15,7 @@ import com.depuisletemps.mynews.R;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -45,6 +46,11 @@ public class SearchActivityTest {
     @Before
     public void setUp() throws Exception{
         Intents.init();
+    }
+
+    @After
+    public void setDown() throws Exception{
+        Intents.release();
     }
 
     @Test
