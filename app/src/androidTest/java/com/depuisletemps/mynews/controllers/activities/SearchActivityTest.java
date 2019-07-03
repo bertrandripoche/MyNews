@@ -1,7 +1,6 @@
 package com.depuisletemps.mynews.controllers.activities;
 
 
-import android.support.test.espresso.DataInteraction;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.intent.Intents;
 import android.support.test.filters.LargeTest;
@@ -21,22 +20,19 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
 import static android.support.test.espresso.action.ViewActions.replaceText;
-import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static android.support.test.espresso.intent.Intents.intended;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
 @LargeTest
@@ -44,15 +40,24 @@ import static org.hamcrest.Matchers.is;
 public class SearchActivityTest {
 
     @Rule
-    public ActivityTestRule<SearchArticlesActivity> mActivityTestRule = new ActivityTestRule<>(SearchArticlesActivity.class);
+    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
-//    @Before
-//    public void setUp() throws Exception{
-//        Intents.init();
-//    }
+    @Before
+    public void setUp() throws Exception{
+        Intents.init();
+    }
 
     @Test
     public void correctlyAnsweredSearchFormAllowsToLaunchSearchResultActivity() {
+        ViewInteraction actionMenuItemView = onView(
+                allOf(withId(R.id.menu_activity_main_search), withContentDescription("Search"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.toolbar),
+                                        2),
+                                0),
+                        isDisplayed()));
+        actionMenuItemView.perform(click());
 
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.activity_form_query_term),
@@ -63,53 +68,6 @@ public class SearchActivityTest {
                                 1),
                         isDisplayed()));
         appCompatEditText.perform(replaceText("obama"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.activity_form_query_term), withText("obama"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText2.perform(pressImeActionButton());
-
-        ViewInteraction appCompatTextView = onView(
-                allOf(withId(R.id.activity_form_begin),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.LinearLayout")),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatTextView.perform(click());
-
-        ViewInteraction appCompatTextView2 = onView(
-                allOf(withClassName(is("android.support.v7.widget.AppCompatTextView")), withText("2019"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.LinearLayout")),
-                                        0),
-                                0),
-                        isDisplayed()));
-        appCompatTextView2.perform(click());
-
-        DataInteraction appCompatTextView3 = onData(anything())
-                .inAdapterView(allOf(withClassName(is("android.widget.YearPickerView")),
-                        childAtPosition(
-                                withClassName(is("com.android.internal.widget.DialogViewAnimator")),
-                                1)))
-                .atPosition(118);
-        appCompatTextView3.perform(scrollTo(), click());
-
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(android.R.id.button1), withText("OK"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                3)));
-        appCompatButton.perform(scrollTo(), click());
 
         ViewInteraction appCompatCheckBox = onView(
                 allOf(withId(R.id.activity_form_checkbox_world), withText("World"),
@@ -121,7 +79,7 @@ public class SearchActivityTest {
                         isDisplayed()));
         appCompatCheckBox.perform(click());
 
-        ViewInteraction appCompatButton2 = onView(
+        ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.activity_form_search_button), withText("Search"),
                         childAtPosition(
                                 childAtPosition(
@@ -129,13 +87,22 @@ public class SearchActivityTest {
                                         0),
                                 4),
                         isDisplayed()));
-        appCompatButton2.perform(click());
+        appCompatButton.perform(click());
 
         intended(hasComponent(SearchArticlesResultActivity.class.getName()));
     }
 
     @Test
     public void incorrectlyAnsweredSearchFormPreventsToLaunchSearchResultActivity() {
+        ViewInteraction actionMenuItemView = onView(
+                allOf(withId(R.id.menu_activity_main_search), withContentDescription("Search"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.toolbar),
+                                        2),
+                                0),
+                        isDisplayed()));
+        actionMenuItemView.perform(click());
 
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.activity_form_query_term),
@@ -147,54 +114,7 @@ public class SearchActivityTest {
                         isDisplayed()));
         appCompatEditText.perform(replaceText("obama"), closeSoftKeyboard());
 
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.activity_form_query_term), withText("obama"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText2.perform(pressImeActionButton());
-
-        ViewInteraction appCompatTextView = onView(
-                allOf(withId(R.id.activity_form_begin),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.LinearLayout")),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatTextView.perform(click());
-
-        ViewInteraction appCompatTextView2 = onView(
-                allOf(withClassName(is("android.support.v7.widget.AppCompatTextView")), withText("2019"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.LinearLayout")),
-                                        0),
-                                0),
-                        isDisplayed()));
-        appCompatTextView2.perform(click());
-
-        DataInteraction appCompatTextView3 = onData(anything())
-                .inAdapterView(allOf(withClassName(is("android.widget.YearPickerView")),
-                        childAtPosition(
-                                withClassName(is("com.android.internal.widget.DialogViewAnimator")),
-                                1)))
-                .atPosition(118);
-        appCompatTextView3.perform(scrollTo(), click());
-
         ViewInteraction appCompatButton = onView(
-                allOf(withId(android.R.id.button1), withText("OK"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                3)));
-        appCompatButton.perform(scrollTo(), click());
-
-        ViewInteraction appCompatButton2 = onView(
                 allOf(withId(R.id.activity_form_search_button), withText("Search"),
                         childAtPosition(
                                 childAtPosition(
@@ -202,7 +122,7 @@ public class SearchActivityTest {
                                         0),
                                 4),
                         isDisplayed()));
-        appCompatButton2.perform(click());
+        appCompatButton.perform(click());
 
         appCompatEditText.check(matches(isDisplayed()));
     }
