@@ -63,7 +63,7 @@ public class SearchResultFragment extends BaseFragment {
     private void createSearchCriterias() throws ParseException {
         if (extras != null) {
             query = buildQuery();
-            filterQuery = buildFilterQuery();
+            filterQuery = buildFilterQuery(extras);
             buildDatePart();
         }
     }
@@ -129,21 +129,23 @@ public class SearchResultFragment extends BaseFragment {
         }
     }
 
-    private String buildFilterQuery() {
+    protected String buildFilterQuery(Bundle bundle) {
         String sectionName = "";
         String sectionPartQuery = "";
         List<String> categoriesArray;
         categoriesArray = Arrays.asList("Arts","Books","Science","Sports","Technology","World");
 
         for(String category : categoriesArray) {
-            if (extras.get(category) != null) {
-                if (Objects.requireNonNull(extras.get(category)).toString().equals("checked")) {
+            if (bundle.getString(category) != null) {
+                //if (Objects.requireNonNull(bundle.get(category)).toString().equals("checked")) {
+                if (Objects.requireNonNull(bundle.getString(category)).equals("checked")) {
                     sectionName = (sectionName.equals("")) ? category : sectionName+ "\" \"" +category;
                 }
             } else {sectionPartQuery="";}
         }
 
         if (!sectionName.equals("")) {sectionPartQuery = "section_name:(" + sectionName + ")";}
+
         return sectionPartQuery;
     }
 

@@ -28,6 +28,7 @@ android {
     packagingOptions {
         exclude 'LICENSE.txt'
     }
+
 }
 
 repositories {

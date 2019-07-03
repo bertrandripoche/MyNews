@@ -5,7 +5,6 @@ import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.text.ParseException;
-import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -24,17 +23,16 @@ public class DateToolsTest {
 
     @Test
     public void havingAGoodDateStringShouldReturnADateObject() throws Exception{
-        /*Verifier que le jour est bien J, le mois MM*/
-        assertTrue(DateTools.getDate("30/6/2019") instanceof Date);
+        DateTools.getDate("30/6/2019");
     }
 
     @Test (expected= ParseException.class)
-    public void havingAWrongStringShouldNotReturnADateObject() throws Exception{
+    public void havingAWrongStringShouldReturnAnException() throws Exception{
         DateTools.getDate("wrong string");
     }
 
     @Test (expected= ParseException.class)
-    public void havingAWrongDateStringShouldNotReturnADateObject() throws Exception{
+    public void havingAWrongDateStringShouldReturnAnException() throws Exception{
         DateTools.getDate("20190630");
     }
 }

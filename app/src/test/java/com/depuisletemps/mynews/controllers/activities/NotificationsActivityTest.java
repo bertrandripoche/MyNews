@@ -1,15 +1,9 @@
 package com.depuisletemps.mynews.controllers.activities;
 
-import android.content.Context;
-import android.content.res.Resources;
 import android.widget.CheckBox;
-
-import org.junit.Before;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,30 +14,6 @@ import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class NotificationsActivityTest {
-    @Mock
-    Context mockApplicationContext;
-    @Mock
-    Resources mockContextResources;
-
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-    }
-
-    @Test
-    public void havingAUserInputShouldReturnTrue() throws Exception {
-        NotificationsActivity activity = new NotificationsActivity();
-
-        // Verification que le bouton switch passe a off
-        assertTrue(activity.checkQueryTermValidity("Test", "Msg"));
-    }
-
-    @Test
-    public void havingNoUserInputShouldReturnFalse() throws Exception {
-        NotificationsActivity activity = mock(NotificationsActivity.class);
-
-        assertFalse(activity.checkQueryTermValidity("", "Msg"));
-    }
 
     @Test
     public void havingAtLeastOneCheckboxCheckedShouldReturnTrue() throws Exception {
