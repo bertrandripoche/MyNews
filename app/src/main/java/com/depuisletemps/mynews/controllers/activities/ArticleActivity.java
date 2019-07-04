@@ -22,7 +22,6 @@ public class ArticleActivity extends AppCompatActivity {
     }
 
     private void configureAndShowArticleFragment(){
-
         ArticleFragment articleFragment = (ArticleFragment) getSupportFragmentManager().findFragmentById(R.id.activity_article_frame_layout);
 
         if (articleFragment == null) {

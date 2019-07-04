@@ -18,7 +18,7 @@ public class HelpActivity extends AppCompatActivity {
         this.configureToolbar();
         }
 
-        private void configureToolbar(){
+    private void configureToolbar(){
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             ActionBar ab = getSupportActionBar();

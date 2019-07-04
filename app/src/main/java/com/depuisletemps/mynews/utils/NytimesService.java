@@ -31,6 +31,7 @@ public interface NytimesService {
     @GET(endUrlSection)
     Observable<SectionFirstResponse> getSearchResults(@QueryMap Map<String, String> options);
 
+    // Retrofit query to get the article list
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.nytimes.com/")
             .addConverterFactory(GsonConverterFactory.create())

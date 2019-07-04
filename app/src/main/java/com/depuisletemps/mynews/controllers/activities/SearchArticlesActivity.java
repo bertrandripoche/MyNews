@@ -132,6 +132,10 @@ public class SearchArticlesActivity extends AppCompatActivity implements View.On
         }
     };
 
+    /**
+     * This method returns a bundle made from our search parameters
+     * @return the Bundle matching the search parameters
+     */
     private Bundle generateBundle() {
         Bundle bundle = new Bundle();
         String terms = queryTerms.getText().toString().trim();
@@ -152,21 +156,37 @@ public class SearchArticlesActivity extends AppCompatActivity implements View.On
         return bundle;
     }
 
+    /**
+     * This method returns a boolean indicating if form is valid
+     * @return true if search form is valid
+     */
     private boolean isFormValid() throws ParseException {
         return isCheckBoxesValid() && isSearchTermValid() && isDateValid();
     }
 
+    /**
+     * This method returns a boolean indicating if at least one checkbox is checked
+     * @return true if one checkbox is checked
+     */
     private boolean isCheckBoxesValid() {
             for(CheckBox checkBox : checkBoxesArray)
                 if (checkBox.isChecked()) return true;
             return false;
         }
 
+    /**
+     * This method returns a boolean indicating if at least one character has been written
+     * @return true if at least one character has been input
+     */
     private boolean isSearchTermValid() {
         String terms = queryTerms.getText().toString().trim();
         return !terms.equals("");
         }
 
+    /**
+     * This method returns a boolean indicating if dates are valid
+     * @return true if dates are valid
+     */
     private boolean isDateValid() throws ParseException {
         String begin = beginDateButton.getText().toString().trim();
         String end = endDateButton.getText().toString().trim();
@@ -186,6 +206,10 @@ public class SearchArticlesActivity extends AppCompatActivity implements View.On
         return true;
     }
 
+    /**
+     * This method check that date is not in the future
+     * If so, it displays a message and empty the matching field
+     */
     private void checkDate() throws ParseException {
         String begin = beginDateButton.getText().toString().trim();
         String end = endDateButton.getText().toString().trim();
@@ -206,6 +230,9 @@ public class SearchArticlesActivity extends AppCompatActivity implements View.On
         }
     }
 
+    /**
+     * This method write a warning message in a toast
+     */
     private void displayWarningMessage(String errorType) {
         String warningText = "";
         if (errorType.equals("futureDate") || errorType.equals("dateInversion") || errorType.equals("missingInfo")) {

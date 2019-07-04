@@ -40,6 +40,9 @@ public class MostPopularFragment extends BaseFragment {
                 });
     }
 
+    /**
+     * This method manages the recyclerView which allow to display each article on the view pager
+     */
     void configureRecyclerView(){
         this.mostPopulars = new ArrayList<>();
         this.adapter = new MostPopularAdapter(this.mostPopulars, Glide.with(this));
@@ -47,6 +50,9 @@ public class MostPopularFragment extends BaseFragment {
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
+    /**
+     * This method manages the HTTP request to New-York Times to get the articles to display
+     */
     void executeHttpRequestWithRetrofit(){
         this.disposable = NytimesStreams.streamFetchMostPopulars().subscribeWith(new DisposableObserver<MostPopularResponse>() {
             @Override
@@ -66,6 +72,9 @@ public class MostPopularFragment extends BaseFragment {
         });
     }
 
+    /**
+     * This method updates the UI with the list of articles (on creation, on refresh)
+     */
     private void updateUI(List<MostPopular> mostPopulars){
         swipeRefreshLayout.setRefreshing(false);
         this.mostPopulars.clear();

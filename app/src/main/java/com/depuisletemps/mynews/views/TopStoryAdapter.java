@@ -12,18 +12,19 @@ import com.depuisletemps.mynews.R;
 
 import java.util.List;
 
-public class NytimesAdapter extends RecyclerView.Adapter<NytimesViewHolder> {
+public class TopStoryAdapter extends RecyclerView.Adapter<NytimesViewHolder> {
 
     // FOR DATA
     private List<TopStory> topStories;
     private RequestManager glide;
 
     // CONSTRUCTOR
-    public NytimesAdapter(List<TopStory> topStories, RequestManager glide) {
+    public TopStoryAdapter(List<TopStory> topStories, RequestManager glide) {
         this.topStories = topStories;
         this.glide = glide;
     }
 
+    // Create a view of an article summary in the list
     @Override
     public NytimesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();

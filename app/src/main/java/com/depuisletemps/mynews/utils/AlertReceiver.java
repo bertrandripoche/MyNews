@@ -47,12 +47,18 @@ public class AlertReceiver extends BroadcastReceiver {
         this.executeHttpRequestWithRetrofit(context);
     }
 
+    /**
+     * This method updates the query variable, used for the query part of the filter
+     */
     private void getQueryFromSharedPreferences(Context context) {
         if (!notificationSharedPreferences.getPreferences(context, PREFS_TERMS).equals("")) {
             query = notificationSharedPreferences.getPreferences(context, PREFS_TERMS);
         }
     }
 
+    /**
+     * This method updates the filter variable, used for the section part of the filter
+     */
     private void getFilterQueryFromSharedPreferences(Context context) {
         if (notificationSharedPreferences.getBooleanPreferences(context, PREFS_ARTS)) {
             filter = (filter.equals(""))? "\"" + PREFS_ARTS + "\"" : filter + " " + "\"" + PREFS_ARTS + "\"";
@@ -74,11 +80,17 @@ public class AlertReceiver extends BroadcastReceiver {
         }
     }
 
+    /**
+     * This method get the reference date for the filter (yesterday and today)
+     */
     private void getReferencesDates() {
         begin = DateTools.getYesterdayString();
         end = DateTools.getTodayString();
     }
 
+    /**
+     * This method manages the HTTP request to New-York Times to get the articles to display
+     */
     void executeHttpRequestWithRetrofit (Context context) {
         if (!query.equals("") & !filter.equals("")) {
             String filterQuery = "section_name:(\"" + filter + "\")";
@@ -117,6 +129,9 @@ public class AlertReceiver extends BroadcastReceiver {
         }
     }
 
+    /**
+     * This method creates the notification
+     */
     private void triggerNotification(Context context) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_stat_nytimes_logo)
@@ -129,6 +144,14 @@ public class AlertReceiver extends BroadcastReceiver {
         notificationManager.notify(1, builder.build());
     }
 
+    /**
+     * This method returns the a Map<String, String> needed to create the filters for streams
+     * @param query : our serialized String representing our MoodStore
+     * @param filterQuery : our serialized String representing our MoodStore
+     * @param begin : our serialized String representing our MoodStore
+     * @param end : our serialized String representing our MoodStore
+     * @return a Map<String, String> of name of filter and their value, used for Streams
+     */
     private Map<String, String > createFilterForStreams(String query, String filterQuery, String begin, String end) {
         Map<String, String > data = new HashMap<>();
         if (!query.equals("")) {data.put("q",query);}

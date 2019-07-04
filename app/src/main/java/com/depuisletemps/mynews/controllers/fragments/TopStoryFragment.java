@@ -11,7 +11,7 @@ import com.depuisletemps.mynews.models.TopStoryResponse;
 import com.depuisletemps.mynews.R;
 import com.depuisletemps.mynews.utils.ItemClickSupport;
 import com.depuisletemps.mynews.utils.NytimesStreams;
-import com.depuisletemps.mynews.views.NytimesAdapter;
+import com.depuisletemps.mynews.views.TopStoryAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class TopStoryFragment extends BaseFragment {
 
     //FOR DATA
     private List<TopStory> topStories;
-    private NytimesAdapter adapter;
+    private TopStoryAdapter adapter;
 
     void configureOnClickRecyclerView(){
         ItemClickSupport.addTo(recyclerView, R.layout.fragment_main_item)
@@ -40,13 +40,19 @@ public class TopStoryFragment extends BaseFragment {
                 });
     }
 
+    /**
+     * This method manages the recyclerView which allow to display each article on the view pager
+     */
     void configureRecyclerView(){
         this.topStories = new ArrayList<>();
-        this.adapter = new NytimesAdapter(this.topStories, Glide.with(this));
+        this.adapter = new TopStoryAdapter(this.topStories, Glide.with(this));
         this.recyclerView.setAdapter(this.adapter);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
+    /**
+     * This method manages the HTTP request to New-York Times to get the articles to display
+     */
     void executeHttpRequestWithRetrofit(){
         this.disposable = NytimesStreams.streamFetchTopStories().subscribeWith(new DisposableObserver<TopStoryResponse>() {
             @Override
@@ -66,6 +72,9 @@ public class TopStoryFragment extends BaseFragment {
         });
     }
 
+    /**
+     * This method updates the UI with the list of articles (on creation, on refresh)
+     */
     private void updateUI(List<TopStory> topStories){
         swipeRefreshLayout.setRefreshing(false);
         this.topStories.clear();

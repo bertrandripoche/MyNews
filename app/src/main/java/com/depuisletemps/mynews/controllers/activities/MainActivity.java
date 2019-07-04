@@ -40,11 +40,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.configureDrawerLayout();
         this.configureNavigationView();
         this.createNotificationChannel();
-
     }
 
     @Override
     public void onBackPressed() {
+        // When back pressed, we close the navigation drawer if open or use the standard back option
         if (this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             this.drawerLayout.closeDrawer(GravityCompat.START);
         } else {
@@ -54,12 +54,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Secondary menu creation
         getMenuInflater().inflate(R.menu.activity_main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Secondary menu item selection
         switch (item.getItemId()) {
             case R.id.menu_activity_main_search:
                 launchActivity("Search");
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Navigation Drawer item selection
         int id = item.getItemId();
         switch (id){
             case R.id.activity_main_drawer_top_stories :
@@ -131,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void configureViewPagerAndTabs(){
+        // Create the view pager and tabs bar
         pager = findViewById(R.id.activity_main_viewpager);
         pager.setAdapter(new PageAdapter(getSupportFragmentManager()));
 
@@ -139,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void configureDrawerLayout(){
+        // Create the navigation drawer page
         this.drawerLayout = findViewById(R.id.activity_main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -146,11 +151,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void configureNavigationView(){
+        // Create the navigation part of the navigation drawer
         NavigationView navigationView = findViewById(R.id.activity_main_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void launchActivity(String activity) {
+        // Launch activity depending on the category chosen
         Class myClass;
         switch(activity) {
             case "Help":
@@ -173,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void createNotificationChannel() {
+        // Needed for notification feature, need to be started first
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "Notification channel name";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;

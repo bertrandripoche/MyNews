@@ -23,50 +23,45 @@ import io.reactivex.disposables.Disposable;
 
 abstract class BaseFragment extends Fragment {
 
-        abstract void configureRecyclerView();
-        abstract void configureOnClickRecyclerView();
-        abstract void executeHttpRequestWithRetrofit();
+    abstract void configureRecyclerView();
+    abstract void configureOnClickRecyclerView();
+    abstract void executeHttpRequestWithRetrofit();
 
-        // FOR DESIGN
-        @BindView(R.id.fragment_main_recycler_view) RecyclerView recyclerView;
-        @BindView(R.id.fragment_main_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
+    // FOR DESIGN
+    @BindView(R.id.fragment_main_recycler_view) RecyclerView recyclerView;
+    @BindView(R.id.fragment_main_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
 
-        //FOR DATA
-        protected Disposable disposable;
+    //FOR DATA
+    protected Disposable disposable;
 
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.fragment_main, container, false);
-            ButterKnife.bind(this, view);
-            this.configureSwipeRefreshLayout();
-            this.configureRecyclerView();
-            this.configureOnClickRecyclerView();
-            this.executeHttpRequestWithRetrofit();
-            return view;
-        }
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        ButterKnife.bind(this, view);
+        this.configureSwipeRefreshLayout();
+        this.configureRecyclerView();
+        this.configureOnClickRecyclerView();
+        this.executeHttpRequestWithRetrofit();
+        return view;
+    }
 
-        @Override
-        public void onDestroy() {
-            super.onDestroy();
-            this.disposeWhenDestroy();
-        }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        this.disposeWhenDestroy();
+    }
 
-        // -----------------
-        // CONFIGURATION
-        // -----------------
-
-        protected void configureSwipeRefreshLayout(){
-            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    executeHttpRequestWithRetrofit();
-                }
-            });
-        }
-
-        // -------------------
-        // HTTP (RxJAVA)
-        // -------------------
+    /**
+     * This method allows to swipe the view pager to refresh
+     */
+    protected void configureSwipeRefreshLayout(){
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                executeHttpRequestWithRetrofit();
+            }
+        });
+    }
 
     private void disposeWhenDestroy(){
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
@@ -78,6 +73,14 @@ abstract class BaseFragment extends Fragment {
         startActivity(intent);
     }
 
+    /**
+     * This method returns the a Map<String, String> needed to create the filters for streams
+     * @param query : our serialized String representing our MoodStore
+     * @param filterQuery : our serialized String representing our MoodStore
+     * @param begin : our serialized String representing our MoodStore
+     * @param end : our serialized String representing our MoodStore
+     * @return a Map<String, String> of name of filter and their value, used for Streams
+     */
     protected Map<String, String > createFilterForStreams(String query, String filterQuery, String begin, String end) {
         Map<String, String > data = new HashMap<>();
         if (!query.equals("")) {data.put("q",query);}

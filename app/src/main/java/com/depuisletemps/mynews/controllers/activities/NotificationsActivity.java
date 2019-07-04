@@ -73,6 +73,7 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
     }
 
     private void restoreNotificationSharedPreferences() {
+        // If sharedPreferences exists -meaning a notification exists-, we populate the notification from it
         if (!notificationSharedPreferences.getAllPreferences(this).isEmpty()) {
 
             if (!Objects.equals(notificationSharedPreferences.getPreferences(this, PREFS_TERMS), "")) {
@@ -114,7 +115,7 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
     }
 
     private TextWatcher textWatcher = new TextWatcher() {
-
+        // We disable notification switch after each text modification
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
         }
@@ -131,7 +132,7 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-
+        // Behavior on switch and checkbox click
         if (v.equals(switchNotification)) {
             if (checkNotificationConditionValidity(queryTerms.getText().toString(), getString(R.string.no_query_item_warning_message), getString(R.string.no_category_warning_message)) && switchNotification.isChecked()) {createNotification();Toast.makeText(this, R.string.notification_created, Toast.LENGTH_LONG).show();}
             if (!switchNotification.isChecked()) {stopAlarm();}
@@ -171,6 +172,7 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
     }
 
     public final void createNotification(){
+        // When we create notifitication, we also save shared preferences to remember notification parameters
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY,1);
         calendar.set(Calendar.MINUTE,12);
@@ -180,29 +182,34 @@ public class NotificationsActivity extends AppCompatActivity implements View.OnC
         saveNotificationSharedPreferences();
     }
 
+    /**
+     * This method save the notification parameters via sharedPreferences
+     */
     public void saveNotificationSharedPreferences() {
         notificationSharedPreferences.storeNotificationParameters(this, queryTerms.getText().toString(), cbArts.isChecked(), cbBooks.isChecked(), cbScience.isChecked(), cbSports.isChecked(), cbTechnology.isChecked(), cbWorld.isChecked());
     }
 
+    /**
+     * This method start the notification via the alertReceiver class and alarmManager
+     */
     public void startAlarm(Calendar calendar) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this,1, intent, 0);
 
-       /* if (calendar.before(Calendar.getInstance())) {
-            calendar.add(Calendar.DATE, 1);
-        }*/
-
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY/*60000*/,pendingIntent);
     }
 
+    /**
+     * This method stop the notification and clear the shared preferences
+     */
     public void stopAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this,1, intent, 0);
 
         alarmManager.cancel(pendingIntent);
-
+        // Every time we stop the alarm, we remove the shared preferences
         notificationSharedPreferences.clearPreferences(this);
     }
 

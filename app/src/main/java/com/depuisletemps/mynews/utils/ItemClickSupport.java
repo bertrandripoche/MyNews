@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 public class ItemClickSupport {
+    // Class used to manage the recyclerView clicks
     private final RecyclerView mRecyclerView;
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;

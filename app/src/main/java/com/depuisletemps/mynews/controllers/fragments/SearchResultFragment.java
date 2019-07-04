@@ -54,12 +54,18 @@ public class SearchResultFragment extends BaseFragment {
         } catch (ParseException e) {e.printStackTrace();}
     }
 
+    /**
+     * This method allows to retrieve the bundle to get the search parameters
+     */
     private void getBundle() {
         if (Objects.requireNonNull(getActivity()).getIntent().getExtras() != null) {
             extras = getActivity().getIntent().getExtras();
         }
     }
 
+    /**
+     * This method
+     */
     private void createSearchCriterias() throws ParseException {
         if (extras != null) {
             query = buildQuery();
@@ -79,6 +85,9 @@ public class SearchResultFragment extends BaseFragment {
                 });
     }
 
+    /**
+     * This method manages the recyclerView which allow to display each article on the view pager
+     */
     void configureRecyclerView () {
         this.sections = new ArrayList<>();
         this.adapter = new SectionAdapter(this.sections, Glide.with(this));
@@ -86,6 +95,9 @@ public class SearchResultFragment extends BaseFragment {
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
+    /**
+     * This method manages the HTTP request to New-York Times to get the articles to display
+     */
     void executeHttpRequestWithRetrofit () {
         Map<String, String> data = createFilterForStreams(query, filterQuery, begin, end);
 
@@ -114,6 +126,9 @@ public class SearchResultFragment extends BaseFragment {
         });
     }
 
+    /**
+     * This method updates the UI with the list of articles (on creation, on refresh)
+     */
     private void updateUI (List <Section> sections) {
         swipeRefreshLayout.setRefreshing(false);
         this.sections.clear();
@@ -121,6 +136,10 @@ public class SearchResultFragment extends BaseFragment {
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * This method returns the string used for the section filter for the streams
+     * @return a string which will be one filter for the streams
+     */
     private String buildQuery() {
         if (extras.get("terms") == null) {
             return "";
@@ -129,6 +148,11 @@ public class SearchResultFragment extends BaseFragment {
         }
     }
 
+    /**
+     * This method returns the string used for the section filter for the streams
+     * @param bundle : our bundle coming from the SearchArticlesActivity
+     * @return a string which will be the filter
+     */
     protected String buildFilterQuery(Bundle bundle) {
         String sectionName = "";
         String sectionPartQuery = "";
@@ -137,7 +161,6 @@ public class SearchResultFragment extends BaseFragment {
 
         for(String category : categoriesArray) {
             if (bundle.getString(category) != null) {
-                //if (Objects.requireNonNull(bundle.get(category)).toString().equals("checked")) {
                 if (Objects.requireNonNull(bundle.getString(category)).equals("checked")) {
                     sectionName = (sectionName.equals("")) ? category : sectionName+ "\" \"" +category;
                 }
@@ -149,6 +172,9 @@ public class SearchResultFragment extends BaseFragment {
         return sectionPartQuery;
     }
 
+    /**
+     * This method set the begin or end variable, used for the date filter for the streams
+     */
     private void buildDatePart() throws ParseException {
         if (!Objects.requireNonNull(extras.get("beginDate")).toString().equals("")) {
             begin = DateTools.getDateStringFromString(Objects.requireNonNull(extras.get("beginDate")).toString());

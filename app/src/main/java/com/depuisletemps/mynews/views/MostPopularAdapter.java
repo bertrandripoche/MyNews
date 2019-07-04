@@ -13,16 +13,15 @@ import com.depuisletemps.mynews.R;
 import java.util.List;
 
 public class MostPopularAdapter extends RecyclerView.Adapter<NytimesViewHolder> {
-    // FOR DATA
     private List<MostPopular> mostPopulars;
     private RequestManager glide;
 
-    // CONSTRUCTOR
     public MostPopularAdapter(List<MostPopular> mostPopulars, RequestManager glide) {
         this.mostPopulars = mostPopulars;
         this.glide = glide;
     }
 
+    // Create a view of an article summary in the list
     @Override
     public NytimesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();

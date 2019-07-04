@@ -9,7 +9,7 @@ import com.depuisletemps.mynews.controllers.fragments.TopStoryFragment;
 import com.depuisletemps.mynews.controllers.fragments.MostPopularFragment;
 
 public class PageAdapter extends FragmentPagerAdapter {
-
+    // Tabs management
     public PageAdapter(FragmentManager mgr) {
         super(mgr);
     }

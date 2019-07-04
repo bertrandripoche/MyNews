@@ -12,6 +12,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class NytimesStreams {
+    // Get the articles and make an Observable from them
     public static Observable<TopStoryResponse> streamFetchTopStories(){
         NytimesService nytimesService = NytimesService.retrofit.create(NytimesService.class);
         return nytimesService.getTopStoryResults()
@@ -20,6 +21,7 @@ public class NytimesStreams {
                 .timeout(10, TimeUnit.SECONDS);
     }
 
+    // Get the articles and make an Observable from them
     public static Observable<MostPopularResponse> streamFetchMostPopulars(){
         NytimesService nytimesService = NytimesService.retrofit.create(NytimesService.class);
         return nytimesService.getMostPopularResults()
@@ -28,8 +30,8 @@ public class NytimesStreams {
                 .timeout(10, TimeUnit.SECONDS);
     }
 
+    // Get the articles and make an Observable from them
     public static Observable<SectionFirstResponse> streamFetchSearch(Map<String, String > data){
-
         NytimesService nytimesService = NytimesService.retrofit.create(NytimesService.class);
         return nytimesService.getSearchResults(data)
                 .subscribeOn(Schedulers.io())

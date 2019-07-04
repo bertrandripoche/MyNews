@@ -37,12 +37,6 @@ public class SectionFragment extends BaseFragment {
         return myFragment;
     }
 
-    private void readBundle(Bundle bundle) {
-        if (bundle != null) {
-            sectionName = bundle.getString("sectionName");
-        }
-    }
-
     void configureOnClickRecyclerView () {
             ItemClickSupport.addTo(recyclerView, R.layout.fragment_main_item)
                     .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
@@ -54,6 +48,9 @@ public class SectionFragment extends BaseFragment {
                     });
         }
 
+    /**
+     * This method manages the recyclerView which allow to display each article on the view pager
+     */
     void configureRecyclerView () {
         readBundle(getArguments());
         this.sections = new ArrayList<>();
@@ -62,6 +59,9 @@ public class SectionFragment extends BaseFragment {
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
+    /**
+     * This method manages the HTTP request to New-York Times to get the articles to display
+     */
     void executeHttpRequestWithRetrofit () {
         String filterQuery = "section_name:(\""+sectionName+"\")";
         Map<String, String> data = createFilterForStreams("", filterQuery, "", "");
@@ -85,6 +85,9 @@ public class SectionFragment extends BaseFragment {
         });
     }
 
+    /**
+     * This method updates the UI with the list of articles (on creation, on refresh)
+     */
     private void updateUI (List <Section> sections) {
         swipeRefreshLayout.setRefreshing(false);
         this.sections.clear();
@@ -92,4 +95,9 @@ public class SectionFragment extends BaseFragment {
         adapter.notifyDataSetChanged();
     }
 
+    private void readBundle(Bundle bundle) {
+        if (bundle != null) {
+            sectionName = bundle.getString("sectionName");
+        }
+    }
 }

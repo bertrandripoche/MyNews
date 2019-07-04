@@ -48,6 +48,7 @@
     <string name="no_result_warning_message">No article found. Return to Search screen.</string>
     <string name="no_query_item_warning_message">A query term is required.</string>
     <string name="no_category_warning_message">At least one category checked</string>
+    <string name="category_change_message">Category change, notification disable\nSwitch it back once criterias set</string>
     <string name="notification_created">Notification created</string>
 
 </resources>

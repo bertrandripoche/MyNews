@@ -31,6 +31,7 @@ public class SectionAdapter extends RecyclerView.Adapter<NytimesViewHolder>{
         this.glide = glide;
     }
 
+    // Create a view of an article summary in the list
     @Override
     public NytimesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();

@@ -29,6 +29,7 @@ public class NytimesViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
+    // Get data to populate viewholder
     public void updateWithTopStories(TopStory topStory, RequestManager glide){
         String onlyDay = topStory.getPublishedDate().split("T")[0];
 
@@ -40,6 +41,7 @@ public class NytimesViewHolder extends RecyclerView.ViewHolder {
         displayItem(category,date,title,imageUrl,glide);
     }
 
+    // Get data to populate viewholder
     public void updateWithMostPopulars(MostPopular mostPopular, RequestManager glide){
         String nonFormattedDay = mostPopular.getPublishedDate();
 
@@ -51,6 +53,7 @@ public class NytimesViewHolder extends RecyclerView.ViewHolder {
         displayItem(category,date,title,imageUrl,glide);
     }
 
+    // Get data to populate viewholder
     public void updateWithSection(Section section, RequestManager glide){
         String nonFormattedDay = section.getPublishedDate().split("T")[0];
 
