@@ -21,6 +21,8 @@ import com.depuisletemps.mynews.views.SectionAdapter;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -111,6 +113,11 @@ public class SearchResultFragment extends BaseFragment {
                     Intent myIntent = new Intent(getContext(),SearchArticlesActivity.class);
                     startActivity(myIntent);
                 } else {
+                    Collections.sort(sections, new Comparator<Section>() {
+                        public int compare(Section s1, Section s2) {
+                            return s1.getPublishedDate().compareTo(s2.getPublishedDate());
+                        }
+                    });
                     updateUI(sections);
                 }
             }

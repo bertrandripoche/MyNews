@@ -14,23 +14,23 @@ import com.depuisletemps.mynews.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NytimesViewHolder extends RecyclerView.ViewHolder {
+class NytimesViewHolder extends RecyclerView.ViewHolder {
 
-    String genericThumb = "https://static01.nyt.com/images/2018/08/24/admin/onboarding_10/onboarding_10-articleLarge-v6.jpg?quality=75&auto=webp&disable=upscale";
-    String imageUrl, date, category, title;
+    private String genericThumb = "https://static01.nyt.com/images/2018/08/24/admin/onboarding_10/onboarding_10-articleLarge-v6.jpg?quality=75&auto=webp&disable=upscale";
+    private String imageUrl, date, category, title;
 
     @BindView(R.id.fragment_main_item_title) TextView textTitle;
     @BindView(R.id.fragment_main_item_category) TextView textCategory;
     @BindView(R.id.fragment_main_item_published_date) TextView textPublishedDate;
     @BindView(R.id.fragment_main_item_thumb) ImageView imageThumb;
 
-    public NytimesViewHolder(View itemView) {
+    NytimesViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
 
     // Get data to populate viewholder
-    public void updateWithTopStories(TopStory topStory, RequestManager glide){
+    void updateWithTopStories(TopStory topStory, RequestManager glide){
         String onlyDay = topStory.getPublishedDate().split("T")[0];
 
         category = topStory.getSubsection().isEmpty() ? topStory.getSection():topStory.getSection()+" > "+topStory.getSubsection();
@@ -42,7 +42,7 @@ public class NytimesViewHolder extends RecyclerView.ViewHolder {
     }
 
     // Get data to populate viewholder
-    public void updateWithMostPopulars(MostPopular mostPopular, RequestManager glide){
+    void updateWithMostPopulars(MostPopular mostPopular, RequestManager glide){
         String nonFormattedDay = mostPopular.getPublishedDate();
 
         date = nonFormattedDay.split("-")[2]+"/"+nonFormattedDay.split("-")[1]+"/"+nonFormattedDay.split("-")[0].substring(2);
@@ -54,11 +54,12 @@ public class NytimesViewHolder extends RecyclerView.ViewHolder {
     }
 
     // Get data to populate viewholder
-    public void updateWithSection(Section section, RequestManager glide){
+    void updateWithSection(Section section, RequestManager glide){
         String nonFormattedDay = section.getPublishedDate().split("T")[0];
 
         date = nonFormattedDay.split("-")[2]+"/"+nonFormattedDay.split("-")[1]+"/"+nonFormattedDay.split("-")[0].substring(2);
-        title = section.getSectionHeadline().getTitle();
+        title = section.getArticleAbstract().equals("") ? section.getSectionHeadline().getTitle(): section.getArticleAbstract();
+        title = title.equals("") ? "No title for this article": title;
         imageUrl = section.getMultimedia().isEmpty() ? genericThumb : "https://static01.nyt.com/"+ section.getMultimedia().get(0).getUrl();
         category = section.getSectionName();
 

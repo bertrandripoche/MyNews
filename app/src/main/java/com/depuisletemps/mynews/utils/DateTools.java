@@ -39,4 +39,10 @@ public class DateTools {
         cal.add(Calendar.DATE, -1);
         return cal.getTime();
     }
+
+    public static String oneYearAgo() {
+        final Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -180);
+        return RIGHT_DATE_FORMAT.format(cal.getTime());
+    }
 }

@@ -11,7 +11,7 @@ public class Section {
     private String webUrl;
     @SerializedName("abstract")
     @Expose
-    private String _abstract;
+    private String articleAbstract;
     @SerializedName("section_name")
     @Expose
     private String sectionName;
@@ -28,6 +28,8 @@ public class Section {
     public String getWebUrl() {
         return webUrl;
     }
+
+    public String getArticleAbstract() {return articleAbstract; }
 
     public String getSectionName() {
         return sectionName;

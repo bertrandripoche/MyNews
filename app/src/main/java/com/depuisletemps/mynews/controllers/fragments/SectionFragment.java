@@ -10,11 +10,14 @@ import com.bumptech.glide.Glide;
 import com.depuisletemps.mynews.models.Section;
 import com.depuisletemps.mynews.models.SectionFirstResponse;
 import com.depuisletemps.mynews.R;
+import com.depuisletemps.mynews.utils.DateTools;
 import com.depuisletemps.mynews.utils.ItemClickSupport;
 import com.depuisletemps.mynews.utils.NytimesStreams;
 import com.depuisletemps.mynews.views.SectionAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -64,12 +67,20 @@ public class SectionFragment extends BaseFragment {
      */
     void executeHttpRequestWithRetrofit () {
         String filterQuery = "section_name:(\""+sectionName+"\")";
-        Map<String, String> data = createFilterForStreams("", filterQuery, "", "");
+        String beginDate = DateTools.oneYearAgo();
+        Map<String, String> data = createFilterForStreams("", filterQuery, beginDate, "");
 
         this.disposable = NytimesStreams.streamFetchSearch(data).subscribeWith(new DisposableObserver<SectionFirstResponse>() {
             @Override
             public void onNext(SectionFirstResponse results) {
                 List<Section> sections = results.getResponse().getDocs();
+                Collections.sort(sections, new Comparator<Section>() {
+                    public int compare(Section s1, Section s2) {
+                        return s1.getPublishedDate().compareTo(s2.getPublishedDate());
+                    }
+                });
+System.out.println("HITS : "+ results.getResponse().getMeta().getHits());
+
                 updateUI(sections);
             }
 
