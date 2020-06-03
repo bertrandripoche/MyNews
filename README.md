@@ -31,13 +31,13 @@ Allow to consult New-York Times articles :<br/>
 - click the magnifying glass to access the search screen
 - enter the criterias (at least a query term and a category)
 - hit Search to see the results
-<br/><img src="readme_material/video1.gif" width="200">
+<br/><img src="readme_material/video2.gif" width="200">
 
 **Notifications** :
 - click the hamburger menu then the notification entry to access the Notifications screen
 - Choose at least one query term and one category
 - Enable the switch button to enable the notifications (once a day)
-<br/><img src="readme_material/video1.gif" width="200">
+<br/><img src="readme_material/video3.gif" width="200">
 
 <h1>Technical considerations</h1>
 These libraries have been used to develop this app :<br/>
