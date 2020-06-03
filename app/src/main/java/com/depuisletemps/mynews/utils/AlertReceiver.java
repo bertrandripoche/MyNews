@@ -3,8 +3,8 @@ package com.depuisletemps.mynews.utils;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.depuisletemps.mynews.models.NotificationSharedPreferences;
@@ -146,10 +146,10 @@ public class AlertReceiver extends BroadcastReceiver {
 
     /**
      * This method returns the a Map<String, String> needed to create the filters for streams
-     * @param query : our serialized String representing our MoodStore
-     * @param filterQuery : our serialized String representing our MoodStore
-     * @param begin : our serialized String representing our MoodStore
-     * @param end : our serialized String representing our MoodStore
+     * @param query : the query entered by user
+     * @param filterQuery : the parameters for the filter
+     * @param begin : the begin date
+     * @param end : the end date
      * @return a Map<String, String> of name of filter and their value, used for Streams
      */
     private Map<String, String > createFilterForStreams(String query, String filterQuery, String begin, String end) {

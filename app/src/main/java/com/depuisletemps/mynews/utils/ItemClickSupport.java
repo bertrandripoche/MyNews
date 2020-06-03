@@ -1,7 +1,7 @@
 package com.depuisletemps.mynews.utils;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 public class ItemClickSupport {
@@ -29,28 +29,27 @@ public class ItemClickSupport {
             return false;
         }
     };
-    private RecyclerView.OnChildAttachStateChangeListener mAttachListener
-            = new RecyclerView.OnChildAttachStateChangeListener() {
-        @Override
-        public void onChildViewAttachedToWindow(@NonNull View view) {
-            if (mOnItemClickListener != null) {
-                view.setOnClickListener(mOnClickListener);
-            }
-            if (mOnItemLongClickListener != null) {
-                view.setOnLongClickListener(mOnLongClickListener);
-            }
-        }
-
-        @Override
-        public void onChildViewDetachedFromWindow(@NonNull View view) {
-        }
-    };
 
     private ItemClickSupport(RecyclerView recyclerView, int itemID) {
         mRecyclerView = recyclerView;
         mItemID = itemID;
         mRecyclerView.setTag(itemID, this);
-        mRecyclerView.addOnChildAttachStateChangeListener(mAttachListener);
+        RecyclerView.OnChildAttachStateChangeListener attachListener = new RecyclerView.OnChildAttachStateChangeListener() {
+            @Override
+            public void onChildViewAttachedToWindow(@NonNull View view) {
+                if (mOnItemClickListener != null) {
+                    view.setOnClickListener(mOnClickListener);
+                }
+                if (mOnItemLongClickListener != null) {
+                    view.setOnLongClickListener(mOnLongClickListener);
+                }
+            }
+
+            @Override
+            public void onChildViewDetachedFromWindow(@NonNull View view) {
+            }
+        };
+        mRecyclerView.addOnChildAttachStateChangeListener(attachListener);
     }
 
     public static ItemClickSupport addTo(RecyclerView view, int itemID) {

@@ -1,6 +1,6 @@
 package com.depuisletemps.mynews.views;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,14 +43,17 @@ class NytimesViewHolder extends RecyclerView.ViewHolder {
 
     // Get data to populate viewholder
     void updateWithMostPopulars(MostPopular mostPopular, RequestManager glide){
-        String nonFormattedDay = mostPopular.getPublishedDate();
+        if (mostPopular != null) {
+            String nonFormattedDay = mostPopular.getPublishedDate();
 
-        date = nonFormattedDay.split("-")[2]+"/"+nonFormattedDay.split("-")[1]+"/"+nonFormattedDay.split("-")[0].substring(2);
-        category = !mostPopular.getSection().isEmpty() ? mostPopular.getSection() : "";
-        title = mostPopular.getTitle();
-        imageUrl = mostPopular.getMedia().get(0).getMediaMetadata().isEmpty() ? genericThumb : mostPopular.getMedia().get(0).getMediaMetadata().get(0).getUrl();
+            date = nonFormattedDay.split("-")[2]+"/"+nonFormattedDay.split("-")[1]+"/"+nonFormattedDay.split("-")[0].substring(2);
+            category = !mostPopular.getSection().isEmpty() ? mostPopular.getSection() : "";
+            title = mostPopular.getTitle();
+            if (!mostPopular.getMedia().isEmpty()) imageUrl = mostPopular.getMedia().get(0).getMediaMetadata().isEmpty() ? genericThumb : mostPopular.getMedia().get(0).getMediaMetadata().get(0).getUrl();
+            else imageUrl = genericThumb;
 
-        displayItem(category,date,title,imageUrl,glide);
+            displayItem(category,date,title,imageUrl,glide);
+        }
     }
 
     // Get data to populate viewholder

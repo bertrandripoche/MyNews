@@ -11,21 +11,21 @@
         android:orientation="vertical"
         android:layout_weight="1">
 
-        <android.support.v7.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/activity_form_checkbox_arts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/WhiteCheck"
             android:text="@string/arts"/>
 
-        <android.support.v7.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/activity_form_checkbox_science"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/WhiteCheck"
             android:text="@string/science"/>
 
-        <android.support.v7.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/activity_form_checkbox_technology"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,21 +39,21 @@
         android:orientation="vertical"
         android:layout_weight="1">
 
-        <android.support.v7.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/activity_form_checkbox_books"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:theme="@style/WhiteCheck"
         android:text="@string/books"/>
 
-        <android.support.v7.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/activity_form_checkbox_sports"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/WhiteCheck"
             android:text="@string/sports"/>
 
-        <android.support.v7.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/activity_form_checkbox_world"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
